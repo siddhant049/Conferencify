@@ -1,9 +1,9 @@
 import React from 'react'
-
+import Navbar from './Navbar'
 const CFP = () => {
   return (
     <div> 
-        <h1>Hello</h1>
+        <Navbar/>
     </div>
   )
 }
