@@ -1,5 +1,5 @@
 import React from 'react'
-import "./cfp.css"
+import classes from "./cfp.module.css"
 import Navbar from '../components/Navbar'
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@material-ui/core';
 import { InputLabel } from '@mui/material';
@@ -13,13 +13,13 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 const CFP = () => {
   return (
     <>
-    <div className='big-container'>
+    <div className={classes.bigContainer}>
         <div>
           <Navbar/>
         </div>
-        <div className='container'>
+        <div className={classes.container}>
           <div >
-              <Card className='form-cfp' style={{ maxWidth: 1000, padding: "20px 5px", marginTop: "400px"  }}>
+              <Card className={classes.formCfp} style={{ maxWidth: 1000, padding: "20px 5px", marginTop: "400px"  }}>
                 <CardContent >
                   <Typography gutterBottom variant="h5">
                   Create a Call for Papers

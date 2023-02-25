@@ -1,20 +1,18 @@
-.big-container{
+.bigContainer{
     display: flex;
     flex-direction: row;
 }
 .container{
     display:flex;
     flex-wrap: wrap;
-    padding-top: 85px;
+    margin-top: 100px ;
 
 }
-.heading-content{
-    text-decoration: underline;
-    padding-left: 25px;
-}
-.form-cfp{
+
+.formCfp{
+    
     position: absolute;
-    top: 50%;
+    top: 60%;
     left: 50%;
     transform: translate(-50%,-50%);
 }

@@ -10,8 +10,8 @@ const Publisher = () => {
     <>
         <Navbar/>
         <div>
-        <Card className='form-cfp' style={{ maxWidth: 1000, padding: "20px 5px", margin: "0 auto" }}>
-                <CardContent style={{paddingTop:"320px"}}>
+        <Card className='form-publisher' style={{ maxWidth: 1000, padding: "20px 5px", margin: "0 auto" }}>
+                <CardContent>
                   <Typography gutterBottom variant="h5">
                   Submit Your Paper
                 </Typography> 
