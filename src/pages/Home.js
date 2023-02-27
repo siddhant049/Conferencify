@@ -1,7 +1,8 @@
 import React from 'react'
 import Navbar from '../components/Navbar'
 import TextImage from '../components/TextImage'
-import './Home.css'
+
+import Cards from '../components/Cards'
 const Home = () => {
   return (
     <>
@@ -9,6 +10,7 @@ const Home = () => {
         <TextImage/>
         <br/>
         <br/>
+        <Cards/>
         <br/>
         <br/>
         

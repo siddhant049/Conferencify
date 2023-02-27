@@ -6,6 +6,8 @@ import Home from './pages/Home'
 import Signup from './pages/Signup'
 import Publisher from './pages/Publisher'
 import Conferences from './pages/Conferences'
+import User from './pages/User'
+import Admin from './pages/Admin'
 
 function App() {
   return (
@@ -14,6 +16,8 @@ function App() {
         <Route exact path='/' element={<Home/>}/>
         <Route exact path='/cfp' element={<CFP/>}/>
         <Route exact path='/publisher' element={<Publisher/>}/>
+        <Route exact path='/userprofile' element={<User/>}/>
+        <Route exact path='/admin' element={<Admin/>}/>
         <Route exact path='/conferences' element={<Conferences/>}/>
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/signup' element={<Signup/>}/>
