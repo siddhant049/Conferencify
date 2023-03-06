@@ -6,6 +6,7 @@ import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import './Cards.css'
+
 const bull = (
   <Box
     component="span"
@@ -14,7 +15,6 @@ const bull = (
     •
   </Box>
 
-  
 );
 
 export default function BasicCard() {
@@ -22,18 +22,15 @@ export default function BasicCard() {
     <>
     <div className='HomeCards'>
         <div>
-            <Card sx={{ maxWidth: 275 }}>
-                <CardContent>
-                    <Typography sx={{ fontSize: 30 }} color="text.primary" gutterBottom>
+            <Card sx={{ maxWidth: 250 ,margin:'10px',maxHeight:300}}>
+                <CardContent style={{display:'flex',flexDirection:'column',justifyContent:'space-around'}}>
+                    <Typography sx={{ fontSize: 25 }} color="text.primary" gutterBottom>
                     Plagirism Check
                     </Typography>
                     <Typography sx={{ fontSize: 15 }} color="black" gutterBottom>
                     First in class Plagirism Check.Hassle Free Process.Easily check papers for any plagirism
                     <br></br>
                     <br></br>
-                    <br></br>
-                    <br></br>
-                    <br></br>
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -42,15 +39,13 @@ export default function BasicCard() {
                 </Card>
         </div>
         <div>
-                <Card sx={{ maxWidth: 275 }}>
-                <CardContent>
-                    <Typography sx={{ fontSize: 30 }} color="text.primary" gutterBottom>
+                <Card sx={{ maxWidth: 250 ,margin:'10px',maxHeight:300 }}>
+                <CardContent style={{display:'flex',flexDirection:'column' ,justifyContent:'space-around'}}>
+                    <Typography sx={{ fontSize: 25 }} color="text.primary" gutterBottom>
                     Easy Conference Management 
                     </Typography>
                     <Typography sx={{ fontSize: 15 }} color="black" gutterBottom>
                     Manage Your Conferences at a single place , long gone are the days where conference management was difficult
-                    <br></br>
-                    <br></br>
                     </Typography>
                 </CardContent>
                 <CardActions>
@@ -59,9 +54,9 @@ export default function BasicCard() {
                 </Card>
         </div>
         <div>
-            <Card sx={{ maxWidth: 275 }}>
-                <CardContent>
-                    <Typography sx={{ fontSize: 30 }} color="text.primary" gutterBottom>
+            <Card sx={{ maxWidth: 250 ,margin:'10px',maxHeight:280 }}>
+                <CardContent style={{display:'flex',flexDirection:'column',justifyContent:'space-around'}}>
+                    <Typography sx={{ fontSize: 20 }} color="text.primary" >
                     Information Download On the Go 
                     </Typography>
                     <Typography sx={{ fontSize: 15 }} color="black" gutterBottom>
@@ -75,9 +70,9 @@ export default function BasicCard() {
         </div>
 
         <div>
-            <Card sx={{ maxWidth: 275 }}>
-                <CardContent>
-                    <Typography sx={{ fontSize: 30 }} color="text.primary" gutterBottom>
+            <Card sx={{ maxWidth: 250 ,margin:'10px',maxHeight:300 }}>
+                <CardContent style={{display:'flex',flexDirection:'column',justifyContent:'space-around'}}>
+                    <Typography sx={{ fontSize: 25 }} color="text.primary" gutterBottom>
                     Call For Papers
                     </Typography>
                     <Typography sx={{ fontSize: 15 }} color="black" gutterBottom>

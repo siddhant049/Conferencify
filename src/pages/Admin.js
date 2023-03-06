@@ -6,8 +6,11 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
+import {  FormControl, MenuItem, Select } from '@mui/material';  
 
-import { Grid, TextField, Button, Card, CardContent } from '@material-ui/core';
+import { Grid, TextField,  Card, CardContent } from '@material-ui/core';
+// import Button from '@mui/material';
+import Button from '@mui/material/Button';
 import { InputLabel } from '@mui/material';
 
 import Accordion from '@mui/material/Accordion';
@@ -65,11 +68,17 @@ const Admin = () => {
         setExpanded(isExpanded ? panel : false);
     };
         const [expanded, setExpanded] = React.useState(false);
+
+
+        const [reviewer, setreviewer] = React.useState('');
+
+  const handleChangeReviewer = (event) => {
+    setreviewer(event.target.value);
+  };
   return (
     <>
         <div className="adminContainer">
             <div>
-
                 <Navbar/>
             </div>
             <div className='contentsAdmin'>
@@ -101,10 +110,31 @@ const Admin = () => {
                                         </AccordionSummary>
                                         <AccordionDetails>
                                         <Typography>
-                                        Authors name:<br/>
-                                        Keywords:<br/>
-                                        File download option<br/>
-                                        Assign a Reviewer Button
+                                        Authors name: Siddhant Srivastava<br/>
+                                        Keywords: Machine learning, Web Development, React 
+                                        <FormControl>
+                                        <InputLabel id="demo-simple-select-label"sx={{marginLeft:'60px'}} >Assign a Reviewer</InputLabel>
+                                          <Select 
+                                              sx={{marginLeft:'60px'}}
+                                                labelId="demo-simple-select-label"
+                                                id="demo-simple-select"
+                                                label="Assgin a reviewer"
+                                                value={reviewer}
+                                                onChange={handleChangeReviewer}
+                                                style={{minWidth: 250}}
+                                              >
+                                                <MenuItem value={10}>Reviewer 1</MenuItem>
+                                                <MenuItem value={20}>Reviewer 2</MenuItem>
+                                                <MenuItem value={30}>Reviewer 3</MenuItem>
+                                          </Select>
+                                          </FormControl>
+                                        <FormControl>
+                                              
+                                              <Button variant="contained" style={{marginLeft:'100px'}}>Download Paper </Button>
+                                              {/* <button type="button">Click Me!</button> */}
+                                        </FormControl>
+                                        <br/>
+                                        <Button variant="contained" style={{marginLeft:'30px'}}>Save </Button>
                                         </Typography>
                                         </AccordionDetails>
                                 </Accordion>
@@ -154,8 +184,7 @@ const Admin = () => {
                                         <AccordionSummary
                                         expandIcon={<ExpandMoreIcon />}
                                         aria-controls="panel4bh-content"
-                                        id="panel4bh-header"
-                                        >
+                                        id="panel4bh-header" >
                                         <Typography sx={{ width: '33%', flexShrink: 0 }}>Paper ID-4</Typography>
                                         <Typography sx={{ color: 'text.secondary' }}>
                                         Paper Name - 4
@@ -189,6 +218,7 @@ const Admin = () => {
                                                     <TextField type="text" placeholder="Name" variant="outlined"  fullWidth required/>
                                                     <TextField type="email" style={{paddingTop:"10px"}} placeholder="Email-Id" variant="outlined"  fullWidth required/>
                                                     <TextField type="text" style={{paddingTop:"10px"}} placeholder="Alias" variant="outlined"  fullWidth required/>
+                                                    <Button variant="contained" style={{marginLeft:'30px',marginTop:'30px'}}>Save </Button>
                                        
                                             </Grid>
                                             {/* <Grid item xs={12} style={{paddingTop:"10px"}}>

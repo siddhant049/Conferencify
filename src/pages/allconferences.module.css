@@ -1,0 +1,23 @@
+/* .adminContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+} */
+.contentsAdmin{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+/* .roleHeading{
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    color: #002244;
+} */
+.tableall{
+    margin:0 50px ;
+}

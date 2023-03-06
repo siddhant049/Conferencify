@@ -43,6 +43,17 @@ const Publisher = () => {
                       <InputLabel id="demo-simple-select-label"  ><i>Enter the Fourth Author's Details</i></InputLabel>
                         <TextField type="text" placeholder="Name" variant="outlined"  fullWidth />
                         <TextField type="email" style={{paddingTop:"10px"}} placeholder="Email-Id" variant="outlined"  fullWidth />
+                        
+                      </Grid>
+
+                      <Grid item xs={12} style={{paddingTop:"20px"}}> 
+                      <InputLabel id="demo-simple-select-label"  ><i>Enter Important keywords(Related you your report)</i></InputLabel>
+                        <TextField type="text" placeholder="Keywords" variant="outlined"  fullWidth />
+                      </Grid>
+
+                      <Grid item xs={12} style={{paddingTop:"20px"}}> 
+                      <InputLabel id="demo-simple-select-label"  ><i>Abstract: </i></InputLabel>
+                        <TextField type="text" placeholder="abstract" variant="outlined"  fullWidth />
                       </Grid>
 
                       <Grid item xs={12} style={{paddingTop:"20px"}}>

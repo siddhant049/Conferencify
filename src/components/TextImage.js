@@ -7,13 +7,13 @@ const TextImage = () => {
   return (
     <>
     <div className={TextImageStyle.imageContainer}>
-        <br/>
-        <br/>
-        <br/>
-        <br/>
-     <Typography>
-      Hello And Welcome To Conferencify Your One Stop Solution for Conference Mangement
-      </Typography>
+        
+        <div className={TextImageStyle.headingHome}>
+              <Typography>
+                <h1><i>Hello And Welcome To Conferencify:<br/> Your One Stop Solution for Conference Mangement</i></h1>
+            </Typography>
+        </div>
+
       
     </div>
     </>
