@@ -13,9 +13,10 @@ import { DesktopDatePicker } from '@mui/x-date-pickers/DesktopDatePicker';
 const CFP = () => {
   return (
     <>
+    <Navbar/>
     <div className={classes.bigContainer}>
         <div>
-          <Navbar/>
+          
         </div>
         <div className={classes.container}>
           <div >

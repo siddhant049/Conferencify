@@ -1,0 +1,11 @@
+.textimage{
+    
+    margin-bottom: 50px;
+}
+.cardHome{
+    margin-bottom: 50px;
+}
+.container{
+    display: flex;
+    flex-direction: column;
+}

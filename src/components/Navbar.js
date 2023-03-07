@@ -13,13 +13,14 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
-const jai="jai"
+
 const drawerWidth = 240;
-const navItems = ['Home', 'About', 'Call for Paper'];
+const navItems = [{name: 'Home',route:'/'}, {name:'About',route:'/'}, {name:'Call for Paper',route:'/cfp'},{name:'Profile',route:'/userprofile'},{name:'AllConferences',route:'/allconferences'}];
 
 function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -33,9 +34,9 @@ function DrawerAppBar(props) {
       <Divider />
       <List>
         {navItems.map((item) => (
-          <ListItem key={item} disablePadding>
+          <ListItem key={item.name} disablePadding>
             <ListItemButton sx={{ textAlign: 'center' }}>
-              <ListItemText primary={item} />
+              <ListItemText primary={item.name} style={{color:'#fff important'}} />
             </ListItemButton>
           </ListItem>
         ))}
@@ -55,21 +56,23 @@ function DrawerAppBar(props) {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { sm: 'none' } }}
+            sx={{ mr: 2, display: { sm: 'none' } ,color:'#fff !important'}}
           >
             <MenuIcon />
           </IconButton>
           <Typography
             variant="h6"
             component="div"
-            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' } }}
+            sx={{ flexGrow: 1, display: { xs: 'none', sm: 'block' },color:'#fff !important' }}
           >
             Conferencify
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item} sx={{ color: '#fff' }}>
-                {item}
+              <Button key={item.name} sx={{ color: '#fff !important' }} onClick={()=>
+                navigate(item.route)
+              }>
+                {item.name}
               </Button>
             ))}
           </Box>
