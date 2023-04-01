@@ -1,7 +1,15 @@
 .form-publisher{
     position: absolute;
-    top: 90%;
+    top: 102%;
     left: 50%;
     transform: translate(-50%,-50%);
 }
 
+.progressBar{
+    display: flex;
+    flex-direction: column;
+}
+.progressBar-2{
+    display: flex;
+    flex-direction: row;
+}

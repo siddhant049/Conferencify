@@ -1,6 +1,6 @@
 import { Typography } from '@mui/material'
 import React from 'react'
-import audiImage from '../Images/audi.jpg'
+import audiImage from '../img/audi.jpg'
 import TextImageStyle from './TextImage.module.css'
 const TextImage = () => {
 

@@ -36,11 +36,11 @@ const Allconferences = () => {
       }
       
       const rows = [
-        createData('Conference Name 1', 'Alias 1', 'Link', ),
-        createData('Conference Name 2', 'Alias 2', 'Link', ),
-        createData('Conference Name 3', 'Alias 3', 'Link', ),
-        createData('Conference Name 4', 'Alias 4', 'Link', ),
-        createData('Conference Name 5', 'Alias 5', 'Link', ),
+        createData('Conference Name 1', 'Acronym 1', 'Link', 'Link ' ),
+        createData('Conference Name 2', 'Acronym 2', 'Link','Link ' ),
+        createData('Conference Name 3', 'Acronym 3', 'Link', 'Link '),
+        createData('Conference Name 4', 'Acronym 4', 'Link', 'Link '),
+        createData('Conference Name 5', 'Acronym 5', 'Link', 'Link '),
       ];
   return (
     <>
@@ -55,7 +55,8 @@ const Allconferences = () => {
             <TableHead>
             <TableRow>
                 <StyledTableCell >Conference Name</StyledTableCell>
-                <StyledTableCell align="center">Alias</StyledTableCell>
+                <StyledTableCell align="center">Acronym</StyledTableCell>
+                <StyledTableCell align="right">Link to Registration Page</StyledTableCell>
                 <StyledTableCell align="right">Link to Web Page</StyledTableCell>
 
             </TableRow>
@@ -68,6 +69,7 @@ const Allconferences = () => {
                 </StyledTableCell>
                 <StyledTableCell align="center">{row.calories}</StyledTableCell>
                 <StyledTableCell align="right">{row.fat}</StyledTableCell>
+                <StyledTableCell align="right">{row.carbs}</StyledTableCell>
 
                 </StyledTableRow>
             ))}

@@ -14,6 +14,8 @@ import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
+
+
 const drawerWidth = 240;
 const navItems = [{name: 'Home',route:'/'}, {name:'About',route:'/'}, {name:'Call for Paper',route:'/cfp'},{name:'Profile',route:'/userprofile'},{name:'AllConferences',route:'/allconferences'}];
 
