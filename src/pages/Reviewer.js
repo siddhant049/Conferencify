@@ -372,9 +372,14 @@ const Admin = () => {
                                                           </Box>
                                                       </Grid>
 
+                                                      <Grid item xs={12} style={{paddingTop:"20px"}}> 
+                                                      <InputLabel id="demo-simple-select-label"   ><i>Comments about the paper *</i></InputLabel>
+                                                      <TextField variant="outlined"  multiline rows={4}
+                                                      maxRows={10} placeholder="Comments*" fullWidth required ></TextField>
+                                                      </Grid>
 
 
-
+                                                      <Button variant="contained" style={{marginLeft:'30px'}}>Done </Button>
 
                                                   </Grid>            
                                               </form>                                             

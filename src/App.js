@@ -11,6 +11,7 @@ import Admin from './pages/Admin'
 import Reviewer from './pages/Reviewer'
 import Allconferences from './pages/Allconferences'
 
+
 function App() {
   return (
     <>
@@ -23,6 +24,7 @@ function App() {
         <Route exact path='/reviewer' element={<Reviewer/>}/>
         <Route exact path='/conferences' element={<Conferences/>}/>
         <Route exact path='/allconferences' element={<Allconferences/>}/>
+
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/signup' element={<Signup/>}/>
 

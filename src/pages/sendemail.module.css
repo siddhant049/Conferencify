@@ -1,0 +1,39 @@
+.container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+.contentinfo{
+    margin-top: 100px;
+    margin-bottom: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+.tableinfo{
+    display: flex;
+    justify-content: center;
+    
+  
+}
+
+.emailContent{
+    display: flex;
+    margin-left: 20px;
+
+
+}
+.emailContentContainer{
+
+    /* padding-left: 100px; */
+    margin-left: 20px;
+
+    width: 70%;
+
+    
+}

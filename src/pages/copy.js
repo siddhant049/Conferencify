@@ -1,18 +1,19 @@
-import { useState } from "react";
-import  storage  from "./firebaseConfig";
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import CircularProgressWithLabel from '../components/ProgressBar'
 import React from 'react'
 import Navbar from '../components/Navbar'
 import './publisher.css'
-
+import { useState } from "react";
 import { Grid, TextField, Button, Card, CardContent, Typography } from '@material-ui/core';
 import { InputLabel } from '@mui/material';
-import CircularProgress from '@mui/material/CircularProgress';
+import {  MenuItem, Select } from '@mui/material';
 
-function Publisher() {
-    // State to store uploaded file
-    const [file, setFile] = useState("");
+
+
+// import { storage } from "./firebaseConfig";
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+
+const Publisher = () => {
+
+  const [file, setFile] = useState("");
  
     // progress
     const [percent, setPercent] = useState(0);
@@ -24,7 +25,7 @@ function Publisher() {
  
     const handleUpload = () => {
         if (!file) {
-            alert("Please upload a pdf first!");
+            alert("Please upload an image first!");
         }
  
         const storageRef = ref(storage, `/files/${file.name}`);
@@ -52,10 +53,9 @@ function Publisher() {
             }
         );
     };
- 
-    return (
-  <>
-    <Navbar/>
+  return (
+    <>
+        <Navbar/>
         <div>
         <Card className='form-publisher' style={{ maxWidth: 1000, padding: "20px 5px", margin: "0 auto" }}>
                 <CardContent>
@@ -102,22 +102,8 @@ function Publisher() {
                       <InputLabel id="demo-simple-select-label"  ><i>Abstract: </i></InputLabel>
                         <TextField type="text" placeholder="abstract" variant="outlined"  fullWidth />
                       </Grid>
-
-
                       <Grid item xs={4} style={{paddingTop:"20px"}}>
-
-                      <div className='progressBar'>
-                          <div className="progressBar-2">
-                                <input style={{marginRight:'30px'}} type="file" onChange={handleChange} accept="application/pdf" />
-                                <CircularProgressWithLabel  value={percent} />
-                          </div>
-                          <div>
-                                <Button  onClick={handleUpload} variant="contained" color="primary" fullWidth>Upload</Button>
-                          </div>
-                          
-                        
-                      </div>
-                        
+                        <Button  variant="contained" color="primary" fullWidth>Upload</Button>
                       </Grid>
 
                       <Grid item xs={12} style={{paddingTop:"20px"}}>
@@ -128,10 +114,9 @@ function Publisher() {
                 </CardContent>
               </Card>
         </div>
-      
-  </>
-        
-    );
+    </>
+
+  )
 }
- 
-export default Publisher;
+
+export default Publisher

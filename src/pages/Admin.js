@@ -19,6 +19,13 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
+import Sendemail from './Sendemail'
+
+
+import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
+import PendingIcon from '@mui/icons-material/Pending';
+import CancelIcon from '@mui/icons-material/Cancel';
+
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -91,6 +98,7 @@ const Admin = () => {
                             <Tabs value={value} onChange={handleChange} aria-label="basic tabs example">
                                 <Tab label="All Papers" {...a11yProps(0)} />
                                 <Tab label="Add Reviewer" {...a11yProps(1)} />
+                                <Tab label="Send Email" {...a11yProps(2)} />
                             </Tabs>
                         </Box>
                         <TabPanel value={value} index={0}>
@@ -106,16 +114,17 @@ const Admin = () => {
                                         <Typography sx={{ width: '33%', flexShrink: 0 }}>
                                             Paper ID-1
                                         </Typography>
-                                        <Typography sx={{ color: 'text.secondary' }}>Paper Name - 1</Typography>
+                                        <Typography sx={{ color: 'text.secondary',width:'62%' }}>Paper Name - 1</Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}><CheckCircleOutlineIcon sx={{color:'green'}}/></Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                         <Typography>
-                                        Authors name: Siddhant Srivastava<br/>
-                                        Keywords: Machine learning, Web Development, React 
+                                        <h5>Authors name:</h5> Siddhant Srivastava<br/>
+                                        <h5>Keywords:</h5> Machine learning, Web Development, React <br></br><br></br>
                                         <FormControl>
-                                        <InputLabel id="demo-simple-select-label"sx={{marginLeft:'60px'}} >Assign a Reviewer</InputLabel>
+                                        <InputLabel id="demo-simple-select-label"sx={{marginLeft:'12px'}} >Assign a Reviewer</InputLabel>
                                           <Select 
-                                              sx={{marginLeft:'60px'}}
+                                              sx={{marginLeft:'12px'}}
                                                 labelId="demo-simple-select-label"
                                                 id="demo-simple-select"
                                                 label="Assgin a reviewer"
@@ -130,11 +139,11 @@ const Admin = () => {
                                           </FormControl>
                                         <FormControl>
                                               
-                                              <Button variant="contained" style={{marginLeft:'100px'}}>Download Paper </Button>
+                                              <Button variant="contained" style={{marginLeft:'100px',marginTop:'10px'}}>Download Paper </Button>
                                               {/* <button type="button">Click Me!</button> */}
                                         </FormControl>
                                         <br/>
-                                        <Button variant="contained" style={{marginLeft:'30px'}}>Save </Button>
+                                        <Button variant="contained" style={{marginLeft:'30px',marginTop:'20px'}}>Save </Button>
                                         </Typography>
                                         </AccordionDetails>
                                 </Accordion>
@@ -145,9 +154,10 @@ const Admin = () => {
                                         id="panel2bh-header"
                                         >
                                         <Typography sx={{ width: '33%', flexShrink: 0 }}>Paper ID-2</Typography>
-                                        <Typography sx={{ color: 'text.secondary' }}>
+                                        <Typography sx={{ color: 'text.secondary',width:'62%' }}>
                                         Paper Name - 2
                                         </Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}><CancelIcon sx={{color:'#800000'}}/></Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                         <Typography>
@@ -167,9 +177,10 @@ const Admin = () => {
                                         <Typography sx={{ width: '33%', flexShrink: 0 }}>
                                         Paper ID-3
                                         </Typography>
-                                        <Typography sx={{ color: 'text.secondary' }}>
+                                        <Typography sx={{ color: 'text.secondary',width:'62%' }}>
                                         Paper Name - 3
                                         </Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}><PendingIcon /></Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                         <Typography>
@@ -186,9 +197,10 @@ const Admin = () => {
                                         aria-controls="panel4bh-content"
                                         id="panel4bh-header" >
                                         <Typography sx={{ width: '33%', flexShrink: 0 }}>Paper ID-4</Typography>
-                                        <Typography sx={{ color: 'text.secondary' }}>
+                                        <Typography sx={{ color: 'text.secondary' ,width:'62%'}}>
                                         Paper Name - 4
                                         </Typography>
+                                        <Typography sx={{ color: 'text.secondary' }}><CheckCircleOutlineIcon sx={{color:'green'}}/></Typography>
                                         </AccordionSummary>
                                         <AccordionDetails>
                                         <Typography>
@@ -231,6 +243,10 @@ const Admin = () => {
 
                             </Card>
                         </TabPanel>
+                        <TabPanel value={value} index={2}>
+                                        <Sendemail/>  
+                                       
+                        </TabPanel>
 
                 </Box>
             </div>
@@ -241,3 +257,7 @@ const Admin = () => {
 
 
 export default Admin
+
+
+
+
