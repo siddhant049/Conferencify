@@ -4,18 +4,19 @@ import TextImage from '../components/TextImage'
 import Footer from '../components/Footer'
 import Cards from '../components/Cards'
 import homeClasses from './home.module.css'
+import HomeAbout from '../components/HomeAbout'
 const Home = () => {
   return (
     <>
       <div >
           <Navbar/>
-          <div className={` ${homeClasses['container']} ${homeClasses['body']} `}>
+          <div style={{marginTop:'50px'}}className={` ${homeClasses['container']} ${homeClasses['body']} `}>
           <div className={homeClasses['sidebar']}>
-            <button className={homeClasses['nav-btn']}></button>
+            
          </div>
-
+       
                 <header className={homeClasses['header']}>
-                  <img src="img/logo.png" alt="Nexter logo" className={homeClasses.header__logo} />
+                  {/* <img src="img/logo.png" alt="Nexter logo" className={homeClasses.header__logo} /> */}
                   <h3 className={homeClasses['heading-3']}>Conferencify</h3>
                   <h1 className={homeClasses['heading-1']}>Your One Stop Solution for Conference Mangement</h1>
                   <button className={`${homeClasses['btn']} ${homeClasses['header__btn']}`}>Know More</button>
@@ -44,9 +45,13 @@ const Home = () => {
                     </div>
                   </div>
                 </div>
+                
 
+
+                <h4 className={`${homeClasses['topicHeading']}`}>Features </h4>
                 <section className={homeClasses['features']}>
                   <div className={homeClasses['feature']}>
+                   
                     <svg className={homeClasses['feature__icon']}>
                       {/* <use xlink:href="img/sprite.svg#icon-global"></use> */}
                     </svg>
@@ -85,29 +90,7 @@ const Home = () => {
                     <svg className={homeClasses['feature__icon']}>
                       {/* <use xlink:href="img/sprite.svg#icon-lock"></use> */}
                     </svg>
-                    <h4 className={`${homeClasses['heading-4']} ${homeClasses['heading-4--dark']}`}>Secure payments on nexter</h4>
-                    <p className={homeClasses['feature__text']}>
-                      Pariatur voluptatibus quidem consequatur harum, voluptatum mollitia
-                      quae.
-                    </p>
-                  </div>
-
-                  <div className={homeClasses['feature']}>
-                    <svg className={homeClasses['feature__icon']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-presentation"></use> */}
-                    </svg>
-                    <h4 className={`${homeClasses['heading-4']} ${homeClasses['heading-4']}`}>Top 1% realtors</h4>
-                    <p className={homeClasses['feature__text']}>
-                      Quidem consequatur harum, voluptatum mollitia quae. Tenetur distinctio
-                      necessitatibus pariatur voluptatibus.
-                    </p>
-                  </div>
-
-                  <div className={homeClasses['feature']}>
-                    <svg className={homeClasses['feature__icon']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-lock"></use> */}
-                    </svg>
-                    <h4 className={`${homeClasses['heading-4']} ${homeClasses['heading-4--dark']}`}>Secure payments on nexter</h4>
+                    <h4 className={`${homeClasses['heading-4']} ${homeClasses['heading-4--dark']}`}>Conference Hosting</h4>
                     <p className={homeClasses['feature__text']}>
                       Pariatur voluptatibus quidem consequatur harum, voluptatum mollitia
                       quae.
@@ -115,231 +98,9 @@ const Home = () => {
                   </div>
                 </section>
 
-                <div className={homeClasses['story__pictures']}>
-                  <img
-                    src="img/story-1.jpeg"
-                    alt="Couple with new house"
-                    className={homeClasses['story__img--1']}
-                  />
-                  <img src="img/story-2.jpeg" alt="New house" className={homeClasses['story__img--2']} />
-                </div>
-
-                <div className={homeClasses['story__content']}>
-                  <h3 className={homeClasses['heading-3 mb-sm']}>Happy Customers</h3>
-                  <h2 className={`${homeClasses['heading-2']} ${homeClasses['heading-2--dark mb-md']}`}>
-                    &ldquo;The best decision of our lives&rdquo;
-                  </h2>
-                  <p className={homeClasses['story__text']}>
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Tenetur
-                    distinctio necessitatibus pariatur voluptatibus. Quidem consequatur
-                    harum volupta!
-                  </p>
-                  <button className={homeClasses['btn']}>Find your own home</button>
-                </div>
-
-                <section className={homeClasses['homes']}>
-                  <div className={homeClasses['home']}>
-                    <img src="img/house-1.jpeg" alt="House 1" className={homeClasses['home__img']} />
-                    <svg className={homeClasses['home__like']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-heart-full"></use> */}
-                    </svg>
-                    <h5 className={homeClasses['home__name']}>Beautiful Familiy House</h5>
-                    <div className={homeClasses['home__location']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
-                      </svg>
-                      <p>USA</p>
-                    </div>
-                    <div className={homeClasses['home__rooms']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-profile-male"></use> */}
-                      </svg>
-                      <p>5 rooms</p>
-                    </div>
-                    <div className={homeClasses['home__area']}>
-                   
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-expand"></use> */}
-                      </svg>
-                      <p>325 m<sup>2</sup></p>
-                    </div>
-                    <div className={homeClasses['home__price']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
-                      </svg>
-                      <p>$1,200,000</p>
-                    </div>
-                    <button className={homeClasses['btn home__btn']}>Contact realtor</button>
-                  </div>
-
-                  <div className={homeClasses['home']}>
-                    <img src="img/house-2.jpeg" alt="House 2" className={homeClasses['home__img']} />
-                    <svg className={homeClasses['home__like']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-heart-full"></use> */}
-                    </svg>
-                    <h5 className={homeClasses['home__name']}>Modern Glass Villa</h5>
-                    <div className={homeClasses['home__location']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
-                      </svg>
-                      <p>Canada</p>
-                    </div>
-                    <div className={homeClasses['home__rooms']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-profile-male"></use> */}
-                      </svg>
-                      <p>6 rooms</p>
-                    </div>
-                    <div className={homeClasses['home__area']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-expand"></use> */}
-                      </svg>
-                      <p>450 m<sup>2</sup></p>
-                    </div>
-                    <div className={homeClasses['home__price']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
-                      </svg>
-                      <p>$2,750,000</p>
-                    </div>
-                    <button className={homeClasses['btn home__btn']}>Contact realtor</button>
-                  </div>
-
-                  <div className="home">
-                    <img src="img/house-3.jpeg" alt="House 3" className={homeClasses['home__img']} />
-                    <svg className={homeClasses['home__like']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-heart-full"></use> */}
-                    </svg>
-                    <h5 className={homeClasses['home__name']}>Cozy Country House'</h5>
-                    <div className={homeClasses['home__location']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
-                      </svg>
-                      <p>UK</p>
-                    </div>
-                    <div className={homeClasses['home__rooms']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-profile-male"></use> */}
-                      </svg>
-                      <p>4 rooms</p>
-                    </div>
-                    <div className={homeClasses['home__area']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-expand"></use> */}
-                      </svg>
-                      <p>250 m<sup>2</sup></p>
-                    </div>
-                    <div className={homeClasses['home__price']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
-                      </svg>
-                      <p>$850,000</p>
-                    </div>
-                    <button className={homeClasses['btn home__btn']}>Contact realtor</button>
-                  </div>
-
-                  <div className={homeClasses['home']}>
-                    <img src="img/house-4.jpeg" alt="House 4" className={homeClasses['home__img']} />
-                    <svg className={homeClasses['home__like']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-heart-full"></use> */}
-                    </svg>
-                    <h5 className={homeClasses['home__name']}>Large Rustical Villa</h5>
-                    <div className={homeClasses['home__location']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
-                      </svg>
-                      <p>Portugal</p>
-                    </div>
-                    <div className={homeClasses['home__rooms']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-profile-male"></use> */}
-                      </svg>
-                      <p>6 rooms</p>
-                    </div>
-                    <div className={homeClasses['home__area']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-expand"></use> */}
-                      </svg>
-                      <p>480 m<sup>2</sup></p>
-                    </div>
-                    <div className={homeClasses['home__price']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
-                      </svg>
-                      <p>$1,950,000</p>
-                    </div>
-                    <button className={homeClasses['btn home__btn']}>Contact realtor</button>
-                  </div>
-
-                  <div className={homeClasses['home']}>
-                    <img src="img/house-5.jpeg" alt="House 5" className={homeClasses['home__img']} />
-                    <svg className={homeClasses['home__like']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-heart-full"></use> */}
-                    </svg>
-                    <h5 className={homeClasses['home__name']}>Majestic Palace House</h5>
-                    <div className={homeClasses['home__location']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
-                      </svg>
-                      <p>Germany</p>
-                    </div>
-                    <div className={homeClasses['home__rooms']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-profile-male"></use> */}
-                      </svg>
-                      <p>18 rooms</p>
-                    </div>
-                    <div className={homeClasses['home__area']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-expand"></use> */}
-                      </svg>
-                      <p>4230 m<sup>2</sup></p>
-                    </div>
-                    <div className={homeClasses['home__price']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
-                      </svg>
-                      <p>$9,500,000</p>
-                    </div>
-                    <button className={homeClasses['btn home__btn']}>Contact realtor</button>
-                  </div>
-
-                  <div className={homeClasses['home']}>
-                    <img src="img/house-6.jpeg" alt="House 6" className={homeClasses['home__img']} />
-                    <svg className={homeClasses['home__like']}>
-                      {/* <use xlink:href="img/sprite.svg#icon-heart-full"></use> */}
-                    </svg>
-                    <h5 className={homeClasses['home__name']}>Modern Familiy Apartment</h5>
-                    <div className={homeClasses['home__location']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-map-pin"></use> */}
-                      </svg>
-                      <p>Italy</p>
-                    </div>
-                    <div className={homeClasses['home__rooms']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-profile-male"></use> */}
-                      </svg>
-                      <p>3 rooms</p>
-                    </div>
-                    <div className={homeClasses['home__area']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-expand"></use> */}
-                      </svg>
-                      <p>180 m<sup>2</sup></p>
-                    </div>
-                    <div className={homeClasses['home__price']}>
-                      <svg>
-                        {/* <use xlink:href="img/sprite.svg#icon-key"></use> */}
-                      </svg>
-                      <p>$600,000</p>
-                    </div>
-                    <button className={homeClasses['btn home__btn']}>Contact realtor</button>
-                  </div>
-                </section>
-
-                
+                <HomeAbout id="about"/>
           </div>
+
           <Footer/>
       </div>
     </>

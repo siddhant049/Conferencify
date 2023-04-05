@@ -15,9 +15,14 @@ import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import { useNavigate } from "react-router-dom";
 
+import { ListItemIcon } from '@mui/material';
+import CampaignIcon from '@mui/icons-material/Campaign';
+import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
+import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
+import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
 
 const drawerWidth = 240;
-const navItems = [{name: 'Home',route:'/'}, {name:'About',route:'/'}, {name:'Call for Paper',route:'/cfp'},{name:'Profile',route:'/userprofile'},{name:'AllConferences',route:'/allconferences'}];
+const navItems = [{name: 'Home',route:'/',icon:<HomeOutlinedIcon/>}, {name:'Call for Paper',route:'/cfp',icon:<CampaignIcon/>},{name:'AllConferences',route:'/allconferences',icon:<MenuBookOutlinedIcon/>},{name:'Profile',route:'/userprofile',icon:<AccountCircleOutlinedIcon/>}];
 
 function DrawerAppBar(props) {
   const { window } = props;
@@ -31,13 +36,15 @@ function DrawerAppBar(props) {
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: 'center' }}>
       <Typography variant="h6" sx={{ my: 2 }}>
-        MUI
+        Conferencify
       </Typography>
       <Divider />
       <List>
         {navItems.map((item) => (
           <ListItem key={item.name} disablePadding>
+
             <ListItemButton sx={{ textAlign: 'center' }}>
+             {item.icon}
               <ListItemText primary={item.name} style={{color:'#fff important'}} />
             </ListItemButton>
           </ListItem>
@@ -71,10 +78,11 @@ function DrawerAppBar(props) {
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
             {navItems.map((item) => (
-              <Button key={item.name} sx={{ color: '#fff !important' }} onClick={()=>
+              <Button key={item.name} sx={{ color: '#fff !important'}} onClick={()=>
                 navigate(item.route)
               }>
-                {item.name}
+                <p style={{marginRight:'4px',marginTop:'4px'}}> {item.icon}</p>
+                <p>{item.name}</p>
               </Button>
             ))}
           </Box>

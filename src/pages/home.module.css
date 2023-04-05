@@ -13,12 +13,15 @@
 
 .body { 
 font-family: "Nunito", sans-serif;
+
 color: #6D5D4B;
 font-weight: 300; 
-line-height: 1.6; }
+line-height: 1.6; 
+}
 
 .container {
 display: grid;
+
 grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
 grid-template-columns: [sidebar-start] 80px [sidebar-end full-start] minmax(60px, 1fr) [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end]) [center-end] minmax(6rem, 1fr) [full-end]; }
 @media only screen and (max-width: 62.5em) {
@@ -47,6 +50,13 @@ line-height: 1; }
 .heading-2--dark {
   color: #54483A; }
 
+.topicHeading{
+  font-size: 30px;
+  color: #54483A; 
+  margin-top: 10vh;
+  position: relative;
+  margin-left: 600px;
+}
 .heading-3 {
 font-size: 16px;
 color: #c69963;
@@ -127,7 +137,7 @@ margin-top: 40px; }
 .header {
 background-color: #54483A;
 grid-column: full-start / col-end 6;
-background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url(../img/hero.jpeg);
+background-image: linear-gradient(rgba(16, 29, 44, 0.93), rgba(16, 29, 44, 0.93)), url(../img/background\ 1.jpg);
 background-size: cover;
 background-position: center;
 padding: 80px;
@@ -207,7 +217,7 @@ grid-row-gap: 20px; }
 
 .features {
 grid-column: center-start / center-end;
-margin: 150px 0; }
+margin: 200px 0; }
 @supports (display: grid) {
   .features {
     display: grid;
@@ -239,7 +249,7 @@ grid-column-gap: 25px; }
 .story__pictures {
 background-color: #c69963;
 grid-column: full-start / col-end 4;
-background-image: linear-gradient(rgba(198, 153, 99, 0.5), rgba(198, 153, 99, 0.5)), url(../img/back.jpg);
+background-image: linear-gradient(rgba(198, 153, 99, 0.5), rgba(67, 119, 132, 0.5)), url(../img/background\ 3.jpg);
 background-size: cover;
 display: grid;
 grid-template-rows: repeat(6, 1fr);
@@ -435,7 +445,7 @@ align-items: center; }
 .copyright {
 font-size: 14px;
 color: #aaa;
-margin-top: 60px;
+margin-top: 10px;
 margin-right: auto;
 margin-left: auto;
 text-align: center;

@@ -10,6 +10,7 @@ import User from './pages/User'
 import Admin from './pages/Admin'
 import Reviewer from './pages/Reviewer'
 import Allconferences from './pages/Allconferences'
+import HomeAbout from './components/HomeAbout'
 
 
 function App() {
@@ -24,6 +25,9 @@ function App() {
         <Route exact path='/reviewer' element={<Reviewer/>}/>
         <Route exact path='/conferences' element={<Conferences/>}/>
         <Route exact path='/allconferences' element={<Allconferences/>}/>
+
+        <Route exact path='/#about' element={<Home/>}/>
+
 
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/signup' element={<Signup/>}/>
