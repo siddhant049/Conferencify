@@ -1,5 +1,6 @@
 import './App.css';
-import { Routes ,Route } from 'react-router-dom';
+import { Routes ,Route} from 'react-router-dom';
+
 import Login from './pages/Login';
 import CFP from './pages/CFP'
 import Home from './pages/Home'
@@ -10,14 +11,15 @@ import User from './pages/User'
 import Admin from './pages/Admin'
 import Reviewer from './pages/Reviewer'
 import Allconferences from './pages/Allconferences'
-import HomeAbout from './components/HomeAbout'
+
+import Error from './components/Error'
 
 
 function App() {
   return (
     <>
       <Routes>
-        <Route exact path='/' element={<Home/>}/>Allconferences
+        <Route exact path='/' element={<Home/>}/>
         <Route exact path='/cfp' element={<CFP/>}/>
         <Route exact path='/publisher' element={<Publisher/>}/>
         <Route exact path='/userprofile' element={<User/>}/>
@@ -31,6 +33,8 @@ function App() {
 
         <Route exact path='/login' element={<Login/>}/>
         <Route exact path='/signup' element={<Signup/>}/>
+
+        <Route path='*' element={<Error/>}/>
 
       </Routes>
     </>
