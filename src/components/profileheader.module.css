@@ -8,7 +8,7 @@ body {
 .header {
   min-height: 60vh;
   background: #009FFF;
-background: linear-gradient(to right, #ec2F4B, #009FFF);
+background: linear-gradient(to right, #2c4664, #101d2c);
   color: white;
   clip-path: ellipse(100vw 60vh at 50% 50%);
   display: flex;
@@ -25,7 +25,7 @@ background: linear-gradient(to right, #ec2F4B, #009FFF);
   width: 6rem;
   object-fit: center;
   border-radius: 100% !important;
-  border: 2px solid #fff;
+  border: 2px solid #716f05;
 }
 
 .location p {
