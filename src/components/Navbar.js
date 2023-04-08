@@ -20,23 +20,47 @@ import CampaignIcon from '@mui/icons-material/Campaign';
 import MenuBookOutlinedIcon from '@mui/icons-material/MenuBookOutlined';
 import AccountCircleOutlinedIcon from '@mui/icons-material/AccountCircleOutlined';
 import HomeOutlinedIcon from '@mui/icons-material/HomeOutlined';
+import LogoutIcon from '@mui/icons-material/Logout';
+import LoginIcon from '@mui/icons-material/Login';
 import logo from '../img/logo.png';
 
 import classes from './Navbar.module.css';
+import { isLoggedIn, logout } from '../utils/index';
 
 const drawerWidth = 240;
 const navItems = [
-  { name: 'Home', route: '/', icon: <HomeOutlinedIcon /> },
-  { name: 'Call for Paper', route: '/cfp', icon: <CampaignIcon /> },
+  { name: 'Home', route: '/', icon: <HomeOutlinedIcon />, requiredAuth: false },
+  {
+    name: 'Call for Paper',
+    route: '/cfp',
+    icon: <CampaignIcon />,
+    requiredAuth: true,
+  },
   {
     name: 'AllConferences',
     route: '/allconferences',
     icon: <MenuBookOutlinedIcon />,
+    requiredAuth: false,
   },
   {
     name: 'Profile',
     route: '/userprofile',
     icon: <AccountCircleOutlinedIcon />,
+    requiredAuth: true,
+  },
+  {
+    name: 'Logout',
+    route: '/login',
+    icon: <LogoutIcon />,
+    method: logout,
+    requiredAuth: true,
+  },
+  {
+    name: 'Login',
+    route: '/login',
+    icon: <LoginIcon />,
+    requiredAuth: false,
+    removeOnLogin: true,
   },
 ];
 
@@ -44,6 +68,8 @@ function DrawerAppBar(props) {
   const { window } = props;
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const navigate = useNavigate();
+
+  const loggedIn = isLoggedIn();
 
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
@@ -62,17 +88,30 @@ function DrawerAppBar(props) {
       </Typography>
       <Divider />
       <List>
-        {navItems.map((item) => (
-          <ListItem key={item.name} disablePadding>
-            <ListItemButton sx={{ textAlign: 'center' }}>
-              {item.icon}
-              <ListItemText
-                primary={item.name}
-                style={{ color: '#fff important' }}
-              />
-            </ListItemButton>
-          </ListItem>
-        ))}
+        {navItems.map((item) => {
+          if (item.requiredAuth === true && loggedIn === false) return;
+          if (
+            item.removeOnLogin &&
+            item.removeOnLogin === true &&
+            loggedIn === true
+          )
+            return;
+          return (
+            <ListItem
+              key={item.name}
+              onClick={item.method ? item.method : () => {}}
+              disablePadding
+            >
+              <ListItemButton sx={{ textAlign: 'center' }}>
+                {item.icon}
+                <ListItemText
+                  primary={item.name}
+                  style={{ color: '#fff important' }}
+                />
+              </ListItemButton>
+            </ListItem>
+          );
+        })}
       </List>
     </Box>
   );
@@ -107,19 +146,33 @@ function DrawerAppBar(props) {
             <img src={logo} className={classes.logo} alt='Logo' />
           </Typography>
           <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
-            {navItems.map((item) => (
-              <Button
-                key={item.name}
-                sx={{ color: '#fff !important' }}
-                onClick={() => navigate(item.route)}
-              >
-                <p style={{ marginRight: '4px', marginTop: '4px' }}>
-                  {' '}
-                  {item.icon}
-                </p>
-                <p>{item.name}</p>
-              </Button>
-            ))}
+            {navItems.map((item) => {
+              if (item.requiredAuth === true && loggedIn === false) return;
+              if (
+                item.removeOnLogin &&
+                item.removeOnLogin === true &&
+                loggedIn === true
+              )
+                return;
+              return (
+                <Button
+                  key={item.name}
+                  sx={{ color: '#fff !important' }}
+                  onClick={() => navigate(item.route)}
+                >
+                  <p
+                    style={{ marginRight: '4px', marginTop: '4px' }}
+                    onClick={item.method ? item.method : () => {}}
+                  >
+                    {' '}
+                    {item.icon}
+                  </p>
+                  <p onClick={item.method ? item.method : () => {}}>
+                    {item.name}
+                  </p>
+                </Button>
+              );
+            })}
           </Box>
         </Toolbar>
       </AppBar>
