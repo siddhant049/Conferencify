@@ -450,3 +450,8 @@ margin-right: auto;
 margin-left: auto;
 text-align: center;
 width: 70%; }
+
+.anchorStyleRemove {
+  text-decoration:none;
+  color: #fff
+}

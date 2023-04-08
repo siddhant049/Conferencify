@@ -16,6 +16,7 @@ import {
 } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
+import { motion } from 'framer-motion';
 
 function Publisher() {
   // State to store uploaded file
@@ -48,8 +49,12 @@ function Publisher() {
     );
   };
   return (
-    <>
-      <Navbar />
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div>
         <Card
           className='form-publisher'
@@ -213,7 +218,7 @@ function Publisher() {
           </CardContent>
         </Card>
       </div>
-    </>
+    </motion.div>
   );
 }
 export default Publisher;

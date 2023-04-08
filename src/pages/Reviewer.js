@@ -26,6 +26,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Rating from '@mui/material/Rating';
 
 import StarIcon from '@mui/icons-material/Star';
+import { motion } from 'framer-motion';
 
 const labels = {
   1: 'Pathetic',
@@ -105,11 +106,13 @@ const Admin = () => {
   const [hover6, setHover6] = React.useState(-1);
 
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div className='adminContainer'>
-        <div>
-          <Navbar />
-        </div>
         <div className='contentsAdmin'>
           <div style={{ textDecoration: 'underline', color: '#002244' }}>
             <h1>Conference Name</h1>
@@ -663,7 +666,7 @@ const Admin = () => {
           </Box>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 

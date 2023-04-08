@@ -24,6 +24,7 @@ import Sendemail from './Sendemail';
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import PendingIcon from '@mui/icons-material/Pending';
 import CancelIcon from '@mui/icons-material/Cancel';
+import { motion } from 'framer-motion';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -77,11 +78,13 @@ const Admin = () => {
     setreviewer(event.target.value);
   };
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div className='adminContainer'>
-        <div>
-          <Navbar />
-        </div>
         <div className='contentsAdmin'>
           <div style={{ textDecoration: 'underline', color: '#002244' }}>
             <h1>Conference Name</h1>
@@ -334,7 +337,7 @@ const Admin = () => {
           </Box>
         </div>
       </div>
-    </>
+    </motion.div>
   );
 };
 
