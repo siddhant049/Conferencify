@@ -88,12 +88,6 @@ export default function Login() {
         <LoadingModal open={isModalOpen} message={'Logging in.....'} />
       ) : (
         <>
-          <CollapsibleMessage
-            open={isCollapsibleOpen}
-            setOpen={setIsCollapsibleOpen}
-            severity={collapsibleProperties.severity}
-            message={collapsibleProperties.message}
-          />
           <ThemeProvider theme={theme}>
             <Container component='main' maxWidth='xs'>
               <Box
@@ -110,6 +104,12 @@ export default function Login() {
                 <Typography component='h1' variant='h5'>
                   Sign in into Conferencify
                 </Typography>
+                <CollapsibleMessage
+                  open={isCollapsibleOpen}
+                  setOpen={setIsCollapsibleOpen}
+                  severity={collapsibleProperties.severity}
+                  message={collapsibleProperties.message}
+                />
                 <Box
                   component='form'
                   onSubmit={handleSubmit}

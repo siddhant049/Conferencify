@@ -20,7 +20,7 @@ export default function CollapsibleMessage({
   message,
 }) {
   return (
-    <Box sx={{ width: '100%' }}>
+    <Box sx={{ width: '100%', marginTop: '15px !important' }}>
       <Collapse in={open}>
         <Alert
           variant='outlined'

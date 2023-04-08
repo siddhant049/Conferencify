@@ -95,6 +95,12 @@ export default function SignUp() {
             <Typography component='h1' variant='h5'>
               Sign up
             </Typography>
+            <CollapsibleMessage
+              open={isCollapsibleOpen}
+              setOpen={setIsCollapsibleOpen}
+              severity={collapsibleProperties.severity}
+              message={collapsibleProperties.message}
+            />
             <Box
               component='form'
               noValidate
