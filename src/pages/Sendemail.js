@@ -25,10 +25,10 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-import { TextField } from '@material-ui/core';
+import { TextField } from '@mui/material';
 
-import Navbar from '../components/Navbar'
-import classesinfo from './sendemail.module.css'
+import Navbar from '../components/Navbar';
+import classesinfo from './sendemail.module.css';
 
 function createData(name, calories, fat, carbs, protein) {
   return {
@@ -41,19 +41,19 @@ function createData(name, calories, fat, carbs, protein) {
 }
 
 const rows = [
-  createData('Cupcake', 305, 3.7, ),
-  createData('Donut', 452, 25.0, ),
-  createData('Eclair', 262, 16.0, ),
-  createData('Frozen yoghurt', 159, 6.0, ),
-  createData('Gingerbread', 356, 16.0,),
-  createData('Honeycomb', 408, 3.2, ),
-  createData('Ice cream sandwich', 237, 9.0, ),
-  createData('Jelly Bean', 375, 0.0, ),
-  createData('KitKat', 518, 26.0, ),
-  createData('Lollipop', 392, 0.2, ),
-  createData('Marshmallow', 318, 0, ),
-  createData('Nougat', 360, 19.0, ),
-  createData('Oreo', 437, 18.0,),
+  createData('Cupcake', 305, 3.7),
+  createData('Donut', 452, 25.0),
+  createData('Eclair', 262, 16.0),
+  createData('Frozen yoghurt', 159, 6.0),
+  createData('Gingerbread', 356, 16.0),
+  createData('Honeycomb', 408, 3.2),
+  createData('Ice cream sandwich', 237, 9.0),
+  createData('Jelly Bean', 375, 0.0),
+  createData('KitKat', 518, 26.0),
+  createData('Lollipop', 392, 0.2),
+  createData('Marshmallow', 318, 0),
+  createData('Nougat', 360, 19.0),
+  createData('Oreo', 437, 18.0),
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -107,12 +107,17 @@ const headCells = [
     disablePadding: false,
     label: 'Email ID',
   },
-
 ];
 
 function EnhancedTableHead(props) {
-  const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-    props;
+  const {
+    onSelectAllClick,
+    order,
+    orderBy,
+    numSelected,
+    rowCount,
+    onRequestSort,
+  } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
@@ -120,9 +125,9 @@ function EnhancedTableHead(props) {
   return (
     <TableHead>
       <TableRow>
-        <TableCell padding="checkbox">
+        <TableCell padding='checkbox'>
           <Checkbox
-            color="primary"
+            color='primary'
             indeterminate={numSelected > 0 && numSelected < rowCount}
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
@@ -145,7 +150,7 @@ function EnhancedTableHead(props) {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
+                <Box component='span' sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}
@@ -169,19 +174,19 @@ EnhancedTableHead.propTypes = {
 function EnhancedTableToolbar(props) {
   const { numSelected } = props;
 
-// const [modal,setmodal]=useState(false);
+  // const [modal,setmodal]=useState(false);
 
-// const handleClose = () => {
-//   setmodal(false);
-// };
-  
-// const handleOpen = () => {
-//   setmodal(true);
-// };
+  // const handleClose = () => {
+  //   setmodal(false);
+  // };
+
+  // const handleOpen = () => {
+  //   setmodal(true);
+  // };
 
   return (
     <>
-    {/* <div>
+      {/* <div>
       <Modal size='lg'
         // isOpen={modal}
         open={modal}
@@ -205,51 +210,54 @@ function EnhancedTableToolbar(props) {
 
     </div> */}
 
-    <Toolbar
-      sx={{
-        pl: { sm: 2 },
-        pr: { xs: 1, sm: 1 },
-        ...(numSelected > 0 && {
-          bgcolor: (theme) =>
-            alpha(theme.palette.primary.main, theme.palette.action.activatedOpacity),
-        }),
-      }}
-    >
-      {numSelected > 0 ? (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          color="inherit"
-          variant="subtitle1"
-          component="div"
-        >
-          {numSelected} selected
-        </Typography>
-      ) : (
-        <Typography
-          sx={{ flex: '1 1 100%' }}
-          variant="h6"
-          id="tableTitle"
-          component="div"
-        >
-          Nutrition
-        </Typography>
-      )}
+      <Toolbar
+        sx={{
+          pl: { sm: 2 },
+          pr: { xs: 1, sm: 1 },
+          ...(numSelected > 0 && {
+            bgcolor: (theme) =>
+              alpha(
+                theme.palette.primary.main,
+                theme.palette.action.activatedOpacity
+              ),
+          }),
+        }}
+      >
+        {numSelected > 0 ? (
+          <Typography
+            sx={{ flex: '1 1 100%' }}
+            color='inherit'
+            variant='subtitle1'
+            component='div'
+          >
+            {numSelected} selected
+          </Typography>
+        ) : (
+          <Typography
+            sx={{ flex: '1 1 100%' }}
+            variant='h6'
+            id='tableTitle'
+            component='div'
+          >
+            Nutrition
+          </Typography>
+        )}
 
-      {numSelected > 0 ? (
-        <Tooltip title="Send Email">
-          <IconButton>
-            <ArrowOutwardIcon type='submit' />
-            {/* <ArrowOutwardIcon onClick={handleOpen}/> */}
-          </IconButton>
-        </Tooltip>
-      ) : (
-        <Tooltip title="Filter list">
-          <IconButton>
-            <FilterListIcon />
-          </IconButton>
-        </Tooltip>
-      )}
-    </Toolbar>
+        {numSelected > 0 ? (
+          <Tooltip title='Send Email'>
+            <IconButton>
+              <ArrowOutwardIcon type='submit' />
+              {/* <ArrowOutwardIcon onClick={handleOpen}/> */}
+            </IconButton>
+          </Tooltip>
+        ) : (
+          <Tooltip title='Filter list'>
+            <IconButton>
+              <FilterListIcon />
+            </IconButton>
+          </Tooltip>
+        )}
+      </Toolbar>
     </>
   );
 }
@@ -294,7 +302,7 @@ export default function EnhancedTable() {
     } else if (selectedIndex > 0) {
       newSelected = newSelected.concat(
         selected.slice(0, selectedIndex),
-        selected.slice(selectedIndex + 1),
+        selected.slice(selectedIndex + 1)
       );
     }
 
@@ -320,120 +328,121 @@ export default function EnhancedTable() {
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
 
-
-
   return (
     <>
-    <div>
+      <div>
         <div className={classesinfo.container}>
-                
-                <div className={classesinfo.tableinfo}>
-                    <Box sx={{ width: '90%' }}>
-                        <Paper sx={{ width: '100%', mb: 2 ,paddingBottom:'20px'}}>
-                          <form>
-                            <EnhancedTableToolbar numSelected={selected.length} />
-                            <TableContainer>
-                            <Table
-                                sx={{ minWidth: 750 }}
-                                aria-labelledby="tableTitle"
-                                size={dense ? 'small' : 'medium'}
-                            >
-                                <EnhancedTableHead
-                                numSelected={selected.length}
-                                order={order}
-                                orderBy={orderBy}
-                                onSelectAllClick={handleSelectAllClick}
-                                onRequestSort={handleRequestSort}
-                                rowCount={rows.length}
-                                />
-                                <TableBody>
-                                {stableSort(rows, getComparator(order, orderBy))
-                                    .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                                    .map((row, index) => {
-                                    const isItemSelected = isSelected(row.name);
-                                    const labelId = `enhanced-table-checkbox-${index}`;
+          <div className={classesinfo.tableinfo}>
+            <Box sx={{ width: '90%' }}>
+              <Paper sx={{ width: '100%', mb: 2, paddingBottom: '20px' }}>
+                <form>
+                  <EnhancedTableToolbar numSelected={selected.length} />
+                  <TableContainer>
+                    <Table
+                      sx={{ minWidth: 750 }}
+                      aria-labelledby='tableTitle'
+                      size={dense ? 'small' : 'medium'}
+                    >
+                      <EnhancedTableHead
+                        numSelected={selected.length}
+                        order={order}
+                        orderBy={orderBy}
+                        onSelectAllClick={handleSelectAllClick}
+                        onRequestSort={handleRequestSort}
+                        rowCount={rows.length}
+                      />
+                      <TableBody>
+                        {stableSort(rows, getComparator(order, orderBy))
+                          .slice(
+                            page * rowsPerPage,
+                            page * rowsPerPage + rowsPerPage
+                          )
+                          .map((row, index) => {
+                            const isItemSelected = isSelected(row.name);
+                            const labelId = `enhanced-table-checkbox-${index}`;
 
-                                    return (
-                                        <TableRow
-                                        hover
-                                        onClick={(event) => handleClick(event, row.name)}
-                                        role="checkbox"
-                                        aria-checked={isItemSelected}
-                                        tabIndex={-1}
-                                        key={row.name}
-                                        selected={isItemSelected}
-                                        >
-                                        <TableCell padding="checkbox">
-                                            <Checkbox
-                                            color="primary"
-                                            checked={isItemSelected}
-                                            inputProps={{
-                                                'aria-labelledby': labelId,
-                                            }}
-                                            />
-                                        </TableCell>
-                                        <TableCell
-                                            component="th"
-                                            id={labelId}
-                                            scope="row"
-                                            padding="none"
-                                        >
-                                            {row.name}
-                                        </TableCell>
-                                        <TableCell align="right">{row.calories}</TableCell>
-                                        <TableCell align="right">{row.fat}</TableCell>
-                                      
-                                        </TableRow>
-                                    );
-                                    })}
-                                {emptyRows > 0 && (
-                                    <TableRow
-                                    style={{
-                                        height: (dense ? 33 : 53) * emptyRows,
+                            return (
+                              <TableRow
+                                hover
+                                onClick={(event) =>
+                                  handleClick(event, row.name)
+                                }
+                                role='checkbox'
+                                aria-checked={isItemSelected}
+                                tabIndex={-1}
+                                key={row.name}
+                                selected={isItemSelected}
+                              >
+                                <TableCell padding='checkbox'>
+                                  <Checkbox
+                                    color='primary'
+                                    checked={isItemSelected}
+                                    inputProps={{
+                                      'aria-labelledby': labelId,
                                     }}
-                                    >
-                                    <TableCell colSpan={6} />
-                                    </TableRow>
-                                )}
-                                </TableBody>
-                            </Table>
-                            </TableContainer>
-                            <TablePagination
-                            rowsPerPageOptions={[20, 40, 65]}
-                            component="div"
-                            count={rows.length}
-                            rowsPerPage={rowsPerPage}
-                            page={page}
-                            onPageChange={handleChangePage}
-                            onRowsPerPageChange={handleChangeRowsPerPage}
-                            />
-                            <div className={classesinfo.emailContent}>
-                                  <p >Email Content here: &nbsp;</p>
-                                  <TextField
-                                                      className={classesinfo.emailContentContainer}
-                                                      sx={{backgroundColor:'white'}}
-                                                      placeholder="Type here"
-                                                      multiline
-                                                      variant='outlined'
-                                                      rows={7}
-                                                      maxRows={15}
-                                                      required
-                                                    />
-                            </div>
-                            </form>
-                        </Paper>
-                        <FormControlLabel
-                            control={<Switch checked={dense} onChange={handleChangeDense} />}
-                            label="Dense padding"
-                        />
-                    </Box>
-
-                            
-                </div>
+                                  />
+                                </TableCell>
+                                <TableCell
+                                  component='th'
+                                  id={labelId}
+                                  scope='row'
+                                  padding='none'
+                                >
+                                  {row.name}
+                                </TableCell>
+                                <TableCell align='right'>
+                                  {row.calories}
+                                </TableCell>
+                                <TableCell align='right'>{row.fat}</TableCell>
+                              </TableRow>
+                            );
+                          })}
+                        {emptyRows > 0 && (
+                          <TableRow
+                            style={{
+                              height: (dense ? 33 : 53) * emptyRows,
+                            }}
+                          >
+                            <TableCell colSpan={6} />
+                          </TableRow>
+                        )}
+                      </TableBody>
+                    </Table>
+                  </TableContainer>
+                  <TablePagination
+                    rowsPerPageOptions={[20, 40, 65]}
+                    component='div'
+                    count={rows.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    onPageChange={handleChangePage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                  />
+                  <div className={classesinfo.emailContent}>
+                    <p>Email Content here: &nbsp;</p>
+                    <TextField
+                      className={classesinfo.emailContentContainer}
+                      sx={{ backgroundColor: 'white' }}
+                      placeholder='Type here'
+                      multiline
+                      variant='outlined'
+                      rows={7}
+                      maxRows={15}
+                      required
+                    />
+                  </div>
+                </form>
+              </Paper>
+              <FormControlLabel
+                control={
+                  <Switch checked={dense} onChange={handleChangeDense} />
+                }
+                label='Dense padding'
+              />
+            </Box>
+          </div>
         </div>
- 
-    </div>
+      </div>
     </>
-    
   );
 }

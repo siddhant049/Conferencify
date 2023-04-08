@@ -1,7 +1,7 @@
 import React from 'react'
 import classes from "./cfp.module.css"
 import Navbar from '../components/Navbar'
-import { Grid, TextField, Button, Card, CardContent, Typography } from '@material-ui/core';
+import { Grid, TextField, Button, Card, CardContent, Typography } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import {  MenuItem, Select } from '@mui/material';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
