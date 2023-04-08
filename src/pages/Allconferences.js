@@ -9,6 +9,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { motion } from 'framer-motion';
 
 const Allconferences = () => {
   const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -43,7 +44,12 @@ const Allconferences = () => {
     createData('Conference Name 5', 'Acronym 5', 'Link', 'Link '),
   ];
   return (
-    <>
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 1 }}
+    >
       <div className={classes.contentsAdmin}>
         <div style={{ textDecoration: 'underline', color: '#002244' }}>
           <h1>All Conferences</h1>
@@ -81,7 +87,7 @@ const Allconferences = () => {
           </Table>
         </TableContainer>
       </div>
-    </>
+    </motion.div>
   );
 };
 

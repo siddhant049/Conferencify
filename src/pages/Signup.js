@@ -83,13 +83,13 @@ export default function SignUp() {
         <Container component='main' maxWidth='xs'>
           <Box
             sx={{
-              marginTop: 8,
+              marginTop: 14,
               display: 'flex',
               flexDirection: 'column',
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: '#0c5285' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
@@ -158,13 +158,13 @@ export default function SignUp() {
                 type='submit'
                 fullWidth
                 variant='contained'
-                sx={{ mt: 3, mb: 2 }}
+                sx={{ mt: 3, mb: 2, backgroundColor: '#243f5f' }}
               >
                 Sign Up
               </Button>
               <Grid container justifyContent='flex-end'>
                 <Grid item>
-                  <Link href='/Login' variant='body2'>
+                  <Link href='/Login' variant='body2' sx={{ color: '#243f5f' }}>
                     Already have an account? Sign in
                   </Link>
                 </Grid>

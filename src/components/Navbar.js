@@ -58,7 +58,7 @@ function DrawerAppBar(props) {
           navigate('/');
         }}
       >
-        <img src={logo} className={classes.logo} alt='Logo' />
+        CONFERENCIFY
       </Typography>
       <Divider />
       <List>
