@@ -18,7 +18,7 @@ import Navbar from './components/Navbar';
 function App() {
   return (
     <>
-      {/* <Navbar /> */}
+      <Navbar />
       <AnimatePresence>
         <Routes>
           <Route exact path='/' element={<Home />} />
