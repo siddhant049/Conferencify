@@ -16,7 +16,7 @@ export const login = async (data) => {
   }
 };
 
-export const getData = async (url, data) => {
+export const getData = async (url) => {
   try {
     const response = await axios.get(url, {
       headers: { Authorization: `Bearer ${helper.getToken()}` },
