@@ -15,11 +15,10 @@ import { AnimatePresence } from 'framer-motion';
 import Error from './components/Error';
 import Navbar from './components/Navbar';
 
-
 function App() {
   return (
     <>
-      <Navbar />
+      {/* <Navbar /> */}
       <AnimatePresence>
         <Routes>
           <Route exact path='/' element={<Home />} />
