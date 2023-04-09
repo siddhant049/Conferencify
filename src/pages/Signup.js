@@ -12,11 +12,12 @@ import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
-import { signup } from '../axios/user';
+import { postData } from '../axios';
 import LoadingModal from '../components/LoadingModal';
 import CollapsibleMessage, {
   MessageSeverity,
 } from '../components/CollapsibleMessage';
+import { urlMap } from '../utils/url';
 
 function Copyright(props) {
   return (
@@ -52,7 +53,7 @@ export default function SignUp() {
 
     setIsModalOpen(true);
 
-    const responseData = await signup({
+    const responseData = await postData(urlMap.register, {
       name: `${data.get('firstName')} ${data.get('lastName')}`,
       email: data.get('email'),
       password: data.get('password'),

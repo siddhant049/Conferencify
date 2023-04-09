@@ -1,6 +1,6 @@
 import ProfileHeader from '../components/ProfileHeader';
 import CallMadeIcon from '@mui/icons-material/CallMade';
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -21,6 +21,8 @@ const User = () => {
     createData('Name 2', 'Reviewer', <CallMadeIcon />),
     createData('Name 3', 'User', <CallMadeIcon />),
   ];
+
+  useEffect(() => {}, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}

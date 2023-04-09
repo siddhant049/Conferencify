@@ -25,7 +25,7 @@ import LoginIcon from '@mui/icons-material/Login';
 import logo from '../img/logo.png';
 
 import classes from './Navbar.module.css';
-import { isLoggedIn, logout } from '../utils/index';
+import { isLoggedIn, logout } from '../utils/auth';
 
 const drawerWidth = 240;
 const navItems = [
