@@ -102,7 +102,10 @@ function DrawerAppBar(props) {
               onClick={item.method ? item.method : () => {}}
               disablePadding
             >
-              <ListItemButton sx={{ textAlign: 'center' }}>
+              <ListItemButton
+                sx={{ textAlign: 'center' }}
+                onClick={() => navigate(item.route)}
+              >
                 {item.icon}
                 <ListItemText
                   primary={item.name}
