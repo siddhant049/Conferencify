@@ -453,5 +453,6 @@ width: 70%; }
 
 .anchorStyleRemove {
   text-decoration:none;
-  color: #fff
+  color: #fff;
+  white-space: nowrap
 }

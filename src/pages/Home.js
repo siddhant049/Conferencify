@@ -6,6 +6,9 @@ import Cards from '../components/Cards';
 import homeClasses from './home.module.css';
 import HomeAbout from '../components/HomeAbout';
 import { motion } from 'framer-motion';
+import AdbOutlinedIcon from '@mui/icons-material/AdbOutlined';
+import { Button } from '@mui/material';
+import apk from '../assets/android/Conferencify.apk';
 
 const Home = () => {
   return (
@@ -39,42 +42,20 @@ const Home = () => {
           </header>
 
           <div className={homeClasses['realtors']}>
-            {/* <h3 className={homeClasses['heading-3']}>Top 3 Features</h3>
+            <h3 className={homeClasses['heading-3']}>
+              Download Android Application
+            </h3>
             <div className={homeClasses['realtors__list']}>
-              <img
-                src='img/realtor-1.jpeg'
-                alt='Realtor 1'
-                className={homeClasses['realtors__img']}
-              />
-              <div className={homeClasses['realtors__details']}>
-                <h4
-                  className={`${homeClasses['heading-4']} ${homeClasses['heading-4']}`}
+              <a href={apk} className={homeClasses.anchorStyleRemove}>
+                <Button
+                  variant='contained'
+                  startIcon={<AdbOutlinedIcon />}
+                  sx={{ backgroundColor: '#c69963', padding: '10px' }}
                 >
-                  Erik Feinman
-                </h4>
-                <p className={homeClasses['realtors__sold']}>245 houses sold</p>
-              </div>
-
-              <img
-                src='img/realtor-2.jpeg'
-                alt='Realtor 2'
-                className={homeClasses['realtors__img']}
-              />
-              <div className={homeClasses['realtors__details']}>
-                <h4 className={`${homeClasses['heading-4']}`}>Kim Brown</h4>
-                <p className={homeClasses['realtors__sold']}>212 houses sold</p>
-              </div>
-
-              <img
-                src='img/realtor-3.jpeg'
-                alt='Realtor 3'
-                className={homeClasses['realtors__img']}
-              />
-              <div className={homeClasses['realtors__details']}>
-                <h4 className={`${homeClasses['heading-4']} `}>Toby Ramsey</h4>
-                <p className={homeClasses['realtors__sold']}>198 houses sold</p>
-              </div>
-            </div> */}
+                  Download Now!
+                </Button>
+              </a>
+            </div>
           </div>
 
           <h4 className={`${homeClasses['topicHeading']}`} id='features'>
