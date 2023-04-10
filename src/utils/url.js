@@ -7,4 +7,6 @@ export const urlMap = {
   register: `${userUrl}/register`,
   userProfile: `${userUrl}/me`,
   createConference: `${conferenceUrl}/create`,
+  getSingleConference: `${conferenceUrl}/single`,
+  getAllConferences: `${conferenceUrl}/all`,
 };

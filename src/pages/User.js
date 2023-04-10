@@ -13,12 +13,16 @@ import { motion } from 'framer-motion';
 import { getData } from '../axios';
 import { urlMap } from '../utils/url';
 import LoadingModal from '../components/LoadingModal';
+import OpenInNewIcon from '@mui/icons-material/OpenInNew';
+import { Link, useNavigate } from 'react-router-dom';
+import { isLoggedIn } from '../utils/auth';
 
 const User = () => {
   const [userData, setUserData] = useState(null);
   const [isModalOpen, setIsModalOpen] = React.useState(false);
+  const navigate = useNavigate();
 
-  const getConferenceRow = (confArr, role) => {
+  const getConferenceRow = (confArr, role, route) => {
     return confArr.map((conf) => (
       <TableRow
         key={conf.acronym}
@@ -28,12 +32,20 @@ const User = () => {
           {conf.acronym}
         </TableCell>
         <TableCell align='right'>{role}</TableCell>
-        <TableCell align='right'>{conf.acronym}</TableCell>
+        <TableCell align='right'>
+          <Link to={`/${route}/${conf._id}`}>
+            <OpenInNewIcon sx={{ color: '#243f5f' }} />
+          </Link>
+        </TableCell>
       </TableRow>
     ));
   };
 
   useEffect(() => {
+    if (!isLoggedIn()) {
+      navigate('/login');
+    }
+
     setIsModalOpen(true);
     getData(urlMap.userProfile)
       .then((data) => {
@@ -85,9 +97,17 @@ const User = () => {
                     <TableCell align='right'>{row.link}</TableCell>
                   </TableRow>
                 ))} */}
-                {getConferenceRow(userData.conferenceAdmin, 'Admin')}
-                {getConferenceRow(userData.conferenceReviewer, 'Reviewer')}
-                {getConferenceRow(userData.paperSubmissions, 'Author')}
+                {getConferenceRow(userData.conferenceAdmin, 'Admin', 'admin')}
+                {getConferenceRow(
+                  userData.conferenceReviewer,
+                  'Reviewer',
+                  'reviewer'
+                )}
+                {getConferenceRow(
+                  userData.paperSubmissions,
+                  'Author',
+                  'publisher'
+                )}
               </TableBody>
             </Table>
           </TableContainer>

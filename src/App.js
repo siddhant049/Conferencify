@@ -23,10 +23,10 @@ function App() {
         <Routes>
           <Route exact path='/' element={<Home />} />
           <Route exact path='/cfp' element={<CFP />} />
-          <Route exact path='/publisher' element={<Publisher />} />
+          <Route exact path='/publisher/:confId' element={<Publisher />} />
           <Route exact path='/userprofile' element={<User />} />
-          <Route exact path='/admin' element={<Admin />} />
-          <Route exact path='/reviewer' element={<Reviewer />} />
+          <Route exact path='/admin/:confId' element={<Admin />} />
+          <Route exact path='/reviewer/:confId' element={<Reviewer />} />
           <Route exact path='/conferences' element={<Conferences />} />
           <Route exact path='/allconferences' element={<Allconferences />} />
 

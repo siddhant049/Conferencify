@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import storage from './firebaseConfig';
 import { ref, uploadBytesResumable, getDownloadURL } from 'firebase/storage';
 import CircularProgressWithLabel from '../components/ProgressBar';
@@ -13,12 +13,17 @@ import {
   Card,
   CardContent,
   Typography,
+  TextareaAutosize,
 } from '@mui/material';
 import { InputLabel } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router';
+import { isLoggedIn } from '../utils/auth';
 
 function Publisher() {
+  const navigate = useNavigate();
+
   // State to store uploaded file
   const [file, setFile] = useState(''); // progress
   const [percent, setPercent] = useState(0); // Handle file upload event and update state
@@ -48,6 +53,13 @@ function Publisher() {
       }
     );
   };
+
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      navigate('/login');
+    }
+  }, []);
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -172,6 +184,8 @@ function Publisher() {
                     type='text'
                     placeholder='abstract'
                     variant='outlined'
+                    multiline
+                    rows={8}
                     fullWidth
                   />
                 </Grid>
@@ -195,6 +209,7 @@ function Publisher() {
                         variant='contained'
                         color='primary'
                         fullWidth
+                        sx={{ backgroundColor: '#243f5f' }}
                       >
                         Upload
                       </Button>
@@ -209,6 +224,7 @@ function Publisher() {
                     variant='contained'
                     color='primary'
                     fullWidth
+                    sx={{ backgroundColor: '#243f5f' }}
                   >
                     Submit
                   </Button>

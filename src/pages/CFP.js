@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import classes from './cfp.module.css';
 import Navbar from '../components/Navbar';
 import {
@@ -22,10 +22,14 @@ import LoadingModal from '../components/LoadingModal';
 import CollapsibleMessage, {
   MessageSeverity,
 } from '../components/CollapsibleMessage';
+import { useNavigate } from 'react-router';
+import { isLoggedIn } from '../utils/auth';
 // const handleChange = (newValue) => {
 //   setValue(newValue);
 // };
 const CFP = () => {
+  const navigate = useNavigate();
+
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isCollapsibleOpen, setIsCollapsibleOpen] = React.useState(false);
   const [collapsibleProperties, setCollapsibleProperties] = React.useState({
@@ -51,6 +55,10 @@ const CFP = () => {
     };
     const response = await postData(urlMap.createConference, confData);
     setIsModalOpen(false);
+
+    if (response.success === true) {
+      navigate(`/admin/${response.conference._id}`);
+    }
     setCollapsibleProperties({
       severity:
         response.success === true
@@ -60,6 +68,12 @@ const CFP = () => {
     });
     setIsCollapsibleOpen(true);
   };
+
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      navigate('/login');
+    }
+  }, []);
 
   return isModalOpen ? (
     <LoadingModal open={isModalOpen} message={'Submitting.....'} />
@@ -345,6 +359,7 @@ const CFP = () => {
                       variant='contained'
                       color='primary'
                       fullWidth
+                      sx={{ backgroundColor: '#243f5f' }}
                     >
                       Submit
                     </Button>

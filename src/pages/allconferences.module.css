@@ -21,3 +21,13 @@
 .tableall{
     margin:0 50px ;
 }
+
+.searchBox {
+    margin-bottom: 20px !important;
+    display: flex;
+    justify-content: center;
+}
+
+.innerSearchContainer {
+    display: flex;
+}

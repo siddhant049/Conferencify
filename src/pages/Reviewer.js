@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import './Admin.css';
 import PropTypes from 'prop-types';
@@ -27,6 +27,8 @@ import Rating from '@mui/material/Rating';
 
 import StarIcon from '@mui/icons-material/Star';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router';
+import { isLoggedIn } from '../utils/auth';
 
 const labels = {
   1: 'Pathetic',
@@ -74,8 +76,10 @@ function getLabelText(valuenew) {
   return `${valuenew} Star${valuenew !== 1 ? 's' : ''}, ${labels[valuenew]}`;
 }
 
-const Admin = () => {
+const Reviewer = () => {
   const [value, setValue] = React.useState(0);
+
+  const navigate = useNavigate();
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
@@ -104,6 +108,12 @@ const Admin = () => {
   const [hover4, setHover4] = React.useState(-1);
   const [hover5, setHover5] = React.useState(-1);
   const [hover6, setHover6] = React.useState(-1);
+
+  useEffect(() => {
+    if (!isLoggedIn()) {
+      navigate('/login');
+    }
+  }, []);
 
   return (
     <motion.div
@@ -670,4 +680,4 @@ const Admin = () => {
   );
 };
 
-export default Admin;
+export default Reviewer;
