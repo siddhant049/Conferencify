@@ -18,8 +18,14 @@ import {
 import { InputLabel } from '@mui/material';
 import CircularProgress from '@mui/material/CircularProgress';
 import { motion } from 'framer-motion';
-import { useNavigate } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { isLoggedIn } from '../utils/auth';
+import { postData } from '../axios';
+import CollapsibleMessage, {
+  MessageSeverity,
+} from '../components/CollapsibleMessage';
+import LoadingModal from '../components/LoadingModal';
+import { urlMap } from '../utils/url';
 
 function Publisher() {
   const navigate = useNavigate();
@@ -27,12 +33,20 @@ function Publisher() {
   // State to store uploaded file
   const [file, setFile] = useState(''); // progress
   const [percent, setPercent] = useState(0); // Handle file upload event and update state
+  const [downloadUrl, setDownloadUrl] = useState(null);
+  const [authorCount, setAuthorCount] = useState(1);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCollapsibleOpen, setIsCollapsibleOpen] = useState(false);
+  const [collapsibleProperties, setCollapsibleProperties] = useState({
+    severity: MessageSeverity.info,
+    message: '',
+  });
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
   const handleUpload = () => {
     if (!file) {
-      alert('Please upload a pdf first!');
+      return alert('Please upload a pdf first!');
     }
     const storageRef = ref(storage, `/files/${file.name}`); // progress can be paused and resumed. It also exposes progress updates. // Receives the storage reference and the file to upload.
     const uploadTask = uploadBytesResumable(storageRef, file);
@@ -49,9 +63,51 @@ function Publisher() {
         // download url
         getDownloadURL(uploadTask.snapshot.ref).then((url) => {
           console.log(url);
+          setDownloadUrl(url);
         });
       }
     );
+  };
+
+  const { confId } = useParams();
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (downloadUrl === null) {
+      return alert('Upload the paper to submit!');
+    }
+
+    setIsModalOpen(true);
+    const data = new FormData(event.currentTarget);
+
+    const authorEmails = [];
+
+    for (let i = 0; i < authorCount; i++) {
+      authorEmails.push(data.get(`email${i}`));
+    }
+
+    console.log(authorEmails, confId);
+
+    const publishingData = {
+      conferenceId: confId,
+      authors: authorEmails,
+      title: data.get('title'),
+      keywords: data.get('keywords'),
+      abstract: data.get('abstract'),
+      url: downloadUrl,
+    };
+
+    const responseData = await postData(urlMap.submitPaper, publishingData);
+
+    setIsModalOpen(false);
+    setCollapsibleProperties({
+      severity:
+        responseData.success === true
+          ? MessageSeverity.success
+          : MessageSeverity.error,
+      message: responseData.message,
+    });
+    setIsCollapsibleOpen(true);
   };
 
   useEffect(() => {
@@ -60,7 +116,25 @@ function Publisher() {
     }
   }, []);
 
-  return (
+  const handleChangeAuthorCount = (changeVal) => {
+    setAuthorCount((prevCount) => {
+      if (prevCount + changeVal > 5) {
+        alert('Authors Cannot be more than 5');
+        return prevCount;
+      }
+
+      if (prevCount + changeVal < 1) {
+        alert('Atleast 1 author required');
+        return prevCount;
+      }
+
+      return prevCount + changeVal;
+    });
+  };
+
+  return isModalOpen ? (
+    <LoadingModal open={isModalOpen} message={'Submitting.....'} />
+  ) : (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
@@ -68,169 +142,138 @@ function Publisher() {
       transition={{ duration: 1 }}
     >
       <div>
-        <Card
-          className='form-publisher'
-          style={{ maxWidth: 1000, padding: '20px 5px', margin: '0 auto' }}
-        >
-          <CardContent>
+        <Card className='form-publisher'>
+          <CardContent component='form' onSubmit={handleSubmit}>
             <Typography gutterBottom variant='h5'>
               Submit Your Paper
             </Typography>
-            <Typography
-              variant='body2'
-              color='textSecondary'
-              component='p'
-              gutterBottom
-            >
-              Enter Author Details
-            </Typography>
-            <form>
-              <Grid container spacing={1}>
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <InputLabel id='demo-simple-select-label'>
-                    <i>Enter the First Author's Details *</i>
-                  </InputLabel>
-                  <TextField
-                    type='text'
-                    placeholder='Name'
-                    variant='outlined'
-                    fullWidth
-                    required
-                  />
-                  <TextField
-                    type='email'
-                    style={{ paddingTop: '10px' }}
-                    placeholder='Email-Id'
-                    variant='outlined'
-                    fullWidth
-                    required
-                  />
-                </Grid>
-
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <InputLabel id='demo-simple-select-label'>
-                    <i>Enter the Second Author's Details</i>
-                  </InputLabel>
-                  <TextField
-                    type='text'
-                    placeholder='Name'
-                    variant='outlined'
-                    fullWidth
-                  />
-                  <TextField
-                    type='email'
-                    style={{ paddingTop: '10px' }}
-                    placeholder='Email-Id'
-                    variant='outlined'
-                    fullWidth
-                  />
-                </Grid>
-
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <InputLabel id='demo-simple-select-label'>
-                    <i>Enter the Third Author's Details</i>
-                  </InputLabel>
-                  <TextField
-                    type='text'
-                    placeholder='Name'
-                    variant='outlined'
-                    fullWidth
-                  />
-                  <TextField
-                    type='email'
-                    style={{ paddingTop: '10px' }}
-                    placeholder='Email-Id'
-                    variant='outlined'
-                    fullWidth
-                  />
-                </Grid>
-
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <InputLabel id='demo-simple-select-label'>
-                    <i>Enter the Fourth Author's Details</i>
-                  </InputLabel>
-                  <TextField
-                    type='text'
-                    placeholder='Name'
-                    variant='outlined'
-                    fullWidth
-                  />
-                  <TextField
-                    type='email'
-                    style={{ paddingTop: '10px' }}
-                    placeholder='Email-Id'
-                    variant='outlined'
-                    fullWidth
-                  />
-                </Grid>
-
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <InputLabel id='demo-simple-select-label'>
-                    <i>Enter Important keywords(Related you your report)</i>
-                  </InputLabel>
-                  <TextField
-                    type='text'
-                    placeholder='Keywords'
-                    variant='outlined'
-                    fullWidth
-                  />
-                </Grid>
-
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <InputLabel id='demo-simple-select-label'>
-                    <i>Abstract: </i>
-                  </InputLabel>
-                  <TextField
-                    type='text'
-                    placeholder='abstract'
-                    variant='outlined'
-                    multiline
-                    rows={8}
-                    fullWidth
-                  />
-                </Grid>
-
-                <Grid item xs={4} style={{ paddingTop: '20px' }}>
-                  <div className='progressBar'>
-                    <div className='progressBar-2'>
-                      <input
-                        style={{ marginRight: '30px' }}
-                        type='file'
-                        onChange={handleChange}
-                        accept='application/pdf'
-                      />
-                      <CircularProgressWithLabel value={percent} />
-                    </div>
-                                
-                    <div>
-                                  {' '}
-                      <Button
-                        onClick={handleUpload}
-                        variant='contained'
-                        color='primary'
-                        fullWidth
-                        sx={{ backgroundColor: '#243f5f' }}
-                      >
-                        Upload
-                      </Button>
-                    </div>
-                                         {' '}
-                  </div>
-                </Grid>
-
-                <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                  <Button
-                    type='submit'
-                    variant='contained'
-                    color='primary'
-                    fullWidth
-                    sx={{ backgroundColor: '#243f5f' }}
-                  >
-                    Submit
-                  </Button>
-                </Grid>
+            <CollapsibleMessage
+              open={isCollapsibleOpen}
+              setOpen={setIsCollapsibleOpen}
+              severity={collapsibleProperties.severity}
+              message={collapsibleProperties.message}
+            />
+            <Grid container spacing={1}>
+              <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                <InputLabel id='demo-simple-select-label'>
+                  <i>Enter your paper title *</i>
+                </InputLabel>
+                <TextField
+                  type='text'
+                  placeholder='Paper Title'
+                  variant='outlined'
+                  fullWidth
+                  name='title'
+                  required
+                />
               </Grid>
-            </form>
+              {[...Array(authorCount).keys()].map((idx) => {
+                return (
+                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                    <InputLabel id='demo-simple-select-label'>
+                      <i>Enter the Details of author {idx + 1} *</i>
+                    </InputLabel>
+                    <TextField
+                      type='text'
+                      placeholder='Name'
+                      variant='outlined'
+                      fullWidth
+                      required
+                      name={`author${idx}`}
+                    />
+                    <TextField
+                      type='email'
+                      style={{ paddingTop: '10px' }}
+                      placeholder='Email-Id'
+                      variant='outlined'
+                      fullWidth
+                      required
+                      name={`email${idx}`}
+                    />
+                  </Grid>
+                );
+              })}
+            </Grid>
+            <Grid item xs={12} style={{ paddingTop: '12px' }}>
+              <Button
+                onClick={handleChangeAuthorCount.bind(this, 1)}
+                variant='contained'
+                color='primary'
+                sx={{ backgroundColor: '#243f5f' }}
+              >
+                Add an author
+              </Button>{' '}
+              <Button
+                onClick={handleChangeAuthorCount.bind(this, -1)}
+                variant='contained'
+                color='primary'
+                sx={{ backgroundColor: '#243f5f' }}
+              >
+                Remove an author
+              </Button>
+            </Grid>
+            <Grid item xs={12} style={{ paddingTop: '20px' }}>
+              <InputLabel id='demo-simple-select-label'>
+                <i>Enter Important keywords(Related you your report) *</i>
+              </InputLabel>
+              <TextField
+                type='text'
+                placeholder='Keywords'
+                variant='outlined'
+                fullWidth
+                required
+                name='keywords'
+              />
+              <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                <InputLabel id='demo-simple-select-label'>
+                  <i>Abstract * </i>
+                </InputLabel>
+                <TextField
+                  type='text'
+                  placeholder='abstract'
+                  variant='outlined'
+                  multiline
+                  rows={8}
+                  fullWidth
+                  required
+                  name='abstract'
+                />
+              </Grid>
+              <Grid item xs={4} style={{ paddingTop: '20px' }}>
+                <div className='progressBar'>
+                  <div className='progressBar-2'>
+                    <input
+                      style={{ marginRight: '30px' }}
+                      type='file'
+                      onChange={handleChange}
+                      accept='application/pdf'
+                    />
+                    <CircularProgressWithLabel value={percent} />
+                  </div>
+                  <div>
+                    <Button
+                      onClick={handleUpload}
+                      variant='contained'
+                      color='primary'
+                      sx={{ backgroundColor: '#243f5f' }}
+                    >
+                      Upload
+                    </Button>
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                <Button
+                  type='submit'
+                  variant='contained'
+                  color='primary'
+                  fullWidth
+                  sx={{ backgroundColor: '#243f5f' }}
+                >
+                  Submit
+                </Button>
+              </Grid>
+            </Grid>
           </CardContent>
         </Card>
       </div>

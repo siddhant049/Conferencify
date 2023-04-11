@@ -103,7 +103,7 @@ const Home = () => {
               </h4>
               <p className={homeClasses['feature__text']}>
                 Download Information anywhere anytime , information easily
-                available at a click of the buttom
+                available at a click of the button
               </p>
             </div>
 
@@ -117,8 +117,8 @@ const Home = () => {
                 Conference Hosting
               </h4>
               <p className={homeClasses['feature__text']}>
-                Pariatur voluptatibus quidem consequatur harum, voluptatum
-                mollitia quae.
+                Host your conference with all the convenient features as a part
+                of our offerings like CFP, plag check, etc.
               </p>
             </div>
           </section>

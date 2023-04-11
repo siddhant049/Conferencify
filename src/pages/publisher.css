@@ -1,7 +1,8 @@
 .form-publisher{
-    position: absolute;
-    top: 102%;
+    position: relative;
+    margin-top: 75vh;
     left: 50%;
+    width: 50vw;
     transform: translate(-50%,-50%);
 }
 

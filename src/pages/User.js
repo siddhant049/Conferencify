@@ -23,22 +23,32 @@ const User = () => {
   const navigate = useNavigate();
 
   const getConferenceRow = (confArr, role, route) => {
-    return confArr.map((conf) => (
-      <TableRow
-        key={conf.acronym}
-        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-      >
-        <TableCell component='th' scope='row'>
-          {conf.acronym}
-        </TableCell>
-        <TableCell align='right'>{role}</TableCell>
-        <TableCell align='right'>
-          <Link to={`/${route}/${conf._id}`}>
-            <OpenInNewIcon sx={{ color: '#243f5f' }} />
-          </Link>
-        </TableCell>
-      </TableRow>
-    ));
+    return confArr.map((conf) => {
+      let confAcr = conf.acronym;
+
+      if (role === 'Author') {
+        console.log(role);
+        confAcr = conf.title;
+      }
+
+      console.log(conf);
+      return (
+        <TableRow
+          key={confAcr}
+          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+        >
+          <TableCell component='th' scope='row'>
+            {confAcr}
+          </TableCell>
+          <TableCell align='right'>{role}</TableCell>
+          <TableCell align='right'>
+            <Link to={`/${route}/${conf._id}`}>
+              <OpenInNewIcon sx={{ color: '#243f5f' }} />
+            </Link>
+          </TableCell>
+        </TableRow>
+      );
+    });
   };
 
   useEffect(() => {
@@ -79,7 +89,7 @@ const User = () => {
             <Table sx={{ minWidth: 650 }} aria-label='simple table'>
               <TableHead>
                 <TableRow>
-                  <TableCell>Name of Conference</TableCell>
+                  <TableCell>Name of Conference/Paper</TableCell>
                   <TableCell align='right'>Role</TableCell>
                   <TableCell align='right'>Link</TableCell>
                 </TableRow>

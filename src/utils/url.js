@@ -9,4 +9,5 @@ export const urlMap = {
   createConference: `${conferenceUrl}/create`,
   getSingleConference: `${conferenceUrl}/single`,
   getAllConferences: `${conferenceUrl}/all`,
+  submitPaper: `${conferenceUrl}/paper/submit`,
 };
