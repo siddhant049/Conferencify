@@ -1,9 +1,13 @@
 .form-publisher{
-    position: relative;
-    margin-top: 75vh;
-    left: 50%;
-    width: 50vw;
-    transform: translate(-50%,-50%);
+    width: 60vw;
+}
+
+.form-outer {
+    margin-top: 13vh;
+    display: flex;
+    width: 100vw;
+    justify-content: center;
+    margin-bottom: 10vh;
 }
 
 .progressBar{

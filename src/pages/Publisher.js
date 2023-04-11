@@ -141,7 +141,7 @@ function Publisher() {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <div>
+      <div className='form-outer'>
         <Card className='form-publisher'>
           <CardContent component='form' onSubmit={handleSubmit}>
             <Typography gutterBottom variant='h5'>
@@ -169,7 +169,7 @@ function Publisher() {
               </Grid>
               {[...Array(authorCount).keys()].map((idx) => {
                 return (
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                  <Grid item xs={12} style={{ paddingTop: '20px' }} key={idx}>
                     <InputLabel id='demo-simple-select-label'>
                       <i>Enter the Details of author {idx + 1} *</i>
                     </InputLabel>

@@ -84,45 +84,42 @@ const CFP = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <div className={classes.bigContainer}>
-        <div></div>
-        <div className={classes.container}>
-          <div>
-            <Card
-              className={classes.formCfp}
-              style={{
-                maxWidth: 1000,
-                padding: '20px 5px',
-                marginTop: '400px',
-              }}
-            >
-              <CardContent>
-                <Typography gutterBottom variant='h5'>
-                  Create a Call for Papers
-                </Typography>
-                <CollapsibleMessage
-                  open={isCollapsibleOpen}
-                  setOpen={setIsCollapsibleOpen}
-                  severity={collapsibleProperties.severity}
-                  message={collapsibleProperties.message}
-                />
-                <Typography
-                  variant='body2'
-                  color='textSecondary'
-                  component='p'
-                  gutterBottom
-                >
-                  Note that the information you enter will be published and used
-                  to find your CFP, so please try to be accurate.
-                </Typography>
-                <Grid
-                  container
-                  spacing={1}
-                  component='form'
-                  onSubmit={handleSubmit}
-                  noValidate
-                >
-                  {/* <Grid xs={12} sm={6} item style={{paddingTop:"20px"}}>
+      <div className={classes['form-outer']}>
+        <div className={classes.bigContainer}>
+          <div className={classes.container}>
+            <div>
+              <Card
+                style={{
+                  padding: '20px 5px',
+                }}
+              >
+                <CardContent>
+                  <Typography gutterBottom variant='h5'>
+                    Create a Call for Papers
+                  </Typography>
+                  <CollapsibleMessage
+                    open={isCollapsibleOpen}
+                    setOpen={setIsCollapsibleOpen}
+                    severity={collapsibleProperties.severity}
+                    message={collapsibleProperties.message}
+                  />
+                  <Typography
+                    variant='body2'
+                    color='textSecondary'
+                    component='p'
+                    gutterBottom
+                  >
+                    Note that the information you enter will be published and
+                    used to find your CFP, so please try to be accurate.
+                  </Typography>
+                  <Grid
+                    container
+                    spacing={1}
+                    component='form'
+                    onSubmit={handleSubmit}
+                    noValidate
+                  >
+                    {/* <Grid xs={12} sm={6} item style={{paddingTop:"20px"}}>
                         <InputLabel id="demo-simple-select-label" style={{color:"black"}} >CFP Type:</InputLabel>
                         
                         <Select
@@ -139,101 +136,101 @@ const CFP = () => {
                         </Select>
                       </Grid> */}
 
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <InputLabel
-                      id='demo-simple-select-label'
-                      style={{ color: 'black' }}
-                    >
-                      Name and acronym:
-                    </InputLabel>
-                    <InputLabel id='demo-simple-select-label'>
-                      <i>Enter the Conference's Full name</i>
-                    </InputLabel>
-                    <TextField
-                      type='text'
-                      placeholder='Conference Name'
-                      variant='outlined'
-                      name='name'
-                      fullWidth
-                      required
-                    />
-                  </Grid>
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <InputLabel
+                        id='demo-simple-select-label'
+                        style={{ color: 'black' }}
+                      >
+                        Name and acronym:
+                      </InputLabel>
+                      <InputLabel id='demo-simple-select-label'>
+                        <i>Enter the Conference's Full name</i>
+                      </InputLabel>
+                      <TextField
+                        type='text'
+                        placeholder='Conference Name'
+                        variant='outlined'
+                        name='name'
+                        fullWidth
+                        required
+                      />
+                    </Grid>
 
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <InputLabel id='demo-simple-select-label'>
-                      <i> Enter the Conference Acronym</i>
-                    </InputLabel>
-                    <TextField
-                      type='text'
-                      placeholder='Acronym'
-                      variant='outlined'
-                      name='acronym'
-                      fullWidth
-                      required
-                    />
-                  </Grid>
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <InputLabel id='demo-simple-select-label'>
+                        <i> Enter the Conference Acronym</i>
+                      </InputLabel>
+                      <TextField
+                        type='text'
+                        placeholder='Acronym'
+                        variant='outlined'
+                        name='acronym'
+                        fullWidth
+                        required
+                      />
+                    </Grid>
 
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <InputLabel
-                      id='demo-simple-select-label'
-                      style={{ color: 'black' }}
-                    >
-                      Conference Information :
-                    </InputLabel>
-                    <InputLabel id='demo-simple-select-label'>
-                      <i>Enter the Conference Web Page</i>
-                    </InputLabel>
-                    <TextField
-                      type='text'
-                      placeholder='Web Page'
-                      variant='outlined'
-                      name='webpage'
-                      fullWidth
-                      required
-                    />
-                  </Grid>
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <InputLabel
+                        id='demo-simple-select-label'
+                        style={{ color: 'black' }}
+                      >
+                        Conference Information :
+                      </InputLabel>
+                      <InputLabel id='demo-simple-select-label'>
+                        <i>Enter the Conference Web Page</i>
+                      </InputLabel>
+                      <TextField
+                        type='text'
+                        placeholder='Web Page'
+                        variant='outlined'
+                        name='webpage'
+                        fullWidth
+                        required
+                      />
+                    </Grid>
 
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <InputLabel id='demo-simple-select-label'>
-                      <i>Enter the Conference Location if Relevant</i>
-                    </InputLabel>
-                    <TextField
-                      type='text'
-                      placeholder='Venue'
-                      variant='outlined'
-                      style={{ paddingRight: '10px' }}
-                      name='venue'
-                    />
-                    <TextField
-                      type='text'
-                      placeholder='City'
-                      variant='outlined'
-                      name='city'
-                    />
-                  </Grid>
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <InputLabel id='demo-simple-select-label'>
+                        <i>Enter the Conference Location if Relevant</i>
+                      </InputLabel>
+                      <TextField
+                        type='text'
+                        placeholder='Venue'
+                        variant='outlined'
+                        style={{ paddingRight: '10px' }}
+                        name='venue'
+                      />
+                      <TextField
+                        type='text'
+                        placeholder='City'
+                        variant='outlined'
+                        name='city'
+                      />
+                    </Grid>
 
-                  <Grid xs={12} sm={6} item style={{ paddingTop: '20px' }}>
-                    {/* <TextField placeholder="Enter first name" label="First Name" variant="outlined" fullWidth required /> */}
-                    <InputLabel id='demo-simple-select-label'>
-                      Country/Region:
-                    </InputLabel>
+                    <Grid xs={12} sm={6} item style={{ paddingTop: '20px' }}>
+                      {/* <TextField placeholder="Enter first name" label="First Name" variant="outlined" fullWidth required /> */}
+                      <InputLabel id='demo-simple-select-label'>
+                        Country/Region:
+                      </InputLabel>
 
-                    <Select
-                      labelId='demo-simple-select-label'
-                      id='demo-simple-select'
-                      style={{ minWidth: 250 }}
-                      name='country'
-                    >
-                      {/* <MenuItem value={10}>Ten</MenuItem>
+                      <Select
+                        labelId='demo-simple-select-label'
+                        id='demo-simple-select'
+                        style={{ minWidth: 250 }}
+                        name='country'
+                      >
+                        {/* <MenuItem value={10}>Ten</MenuItem>
                         <MenuItem value={20}>Twenty</MenuItem>
                         <MenuItem value={30}>Thirty</MenuItem> */}
-                      {countries.map((country) => (
-                        <MenuItem value={country}>{country}</MenuItem>
-                      ))}
-                    </Select>
-                  </Grid>
+                        {countries.map((country) => (
+                          <MenuItem value={country}>{country}</MenuItem>
+                        ))}
+                      </Select>
+                    </Grid>
 
-                  {/* <Grid item xs={12} style={{paddingTop:"20px"}}>
+                    {/* <Grid item xs={12} style={{paddingTop:"20px"}}>
                       <InputLabel id="demo-simple-select-label" style={{color:"black"}} >Dates and Deadlines :</InputLabel> 
                       <LocalizationProvider dateAdapter={AdapterDayjs}>
                           <DesktopDatePicker
@@ -246,127 +243,128 @@ const CFP = () => {
                       </LocalizationProvider>
                       </Grid> */}
 
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <InputLabel
-                      id='demo-simple-select-label'
-                      style={{ color: 'black' }}
-                    >
-                      Research Areas :
-                    </InputLabel>
-                    <InputLabel id='demo-simple-select-label'>
-                      <i>
-                        {' '}
-                        Select the main research area to which your conference
-                        belongs.
-                      </i>
-                    </InputLabel>
-                    <Grid xs={12} sm={6} item style={{ paddingTop: '20px' }}>
-                      {/* <TextField placeholder="Enter first name" label="First Name" variant="outlined" fullWidth required /> */}
-                      <InputLabel id='demo-simple-select-label'>
-                        Primary Area
-                      </InputLabel>
-
-                      <Select
-                        labelId='demo-simple-select-label'
-                        id='demo-simple-select'
-                        style={{ minWidth: 250 }}
-                        name='primaryArea'
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <InputLabel
+                        id='demo-simple-select-label'
+                        style={{ color: 'black' }}
                       >
-                        {/* <MenuItem value={10}>Ten</MenuItem>
+                        Research Areas :
+                      </InputLabel>
+                      <InputLabel id='demo-simple-select-label'>
+                        <i>
+                          {' '}
+                          Select the main research area to which your conference
+                          belongs.
+                        </i>
+                      </InputLabel>
+                      <Grid xs={12} sm={6} item style={{ paddingTop: '20px' }}>
+                        {/* <TextField placeholder="Enter first name" label="First Name" variant="outlined" fullWidth required /> */}
+                        <InputLabel id='demo-simple-select-label'>
+                          Primary Area
+                        </InputLabel>
+
+                        <Select
+                          labelId='demo-simple-select-label'
+                          id='demo-simple-select'
+                          style={{ minWidth: 250 }}
+                          name='primaryArea'
+                        >
+                          {/* <MenuItem value={10}>Ten</MenuItem>
                           <MenuItem value={20}>Twenty</MenuItem>
                           <MenuItem value={30}>Thirty</MenuItem> */}
-                        {researchAreas.map((area) => (
-                          <MenuItem value={area}>{area}</MenuItem>
-                        ))}
-                      </Select>
-                    </Grid>
+                          {researchAreas.map((area) => (
+                            <MenuItem value={area}>{area}</MenuItem>
+                          ))}
+                        </Select>
+                      </Grid>
 
-                    <Grid xs={12} sm={6} item style={{ paddingTop: '20px' }}>
-                      {/* <TextField placeholder="Enter first name" label="First Name" variant="outlined" fullWidth required /> */}
-                      <InputLabel id='demo-simple-select-label'>
-                        Secondary Area:
-                      </InputLabel>
+                      <Grid xs={12} sm={6} item style={{ paddingTop: '20px' }}>
+                        {/* <TextField placeholder="Enter first name" label="First Name" variant="outlined" fullWidth required /> */}
+                        <InputLabel id='demo-simple-select-label'>
+                          Secondary Area:
+                        </InputLabel>
 
-                      <Select
-                        labelId='demo-simple-select-label'
-                        id='demo-simple-select'
-                        style={{ minWidth: 250 }}
-                        name='secondaryArea'
-                      >
-                        {/* <MenuItem value={10}>Ten</MenuItem>
+                        <Select
+                          labelId='demo-simple-select-label'
+                          id='demo-simple-select'
+                          style={{ minWidth: 250 }}
+                          name='secondaryArea'
+                        >
+                          {/* <MenuItem value={10}>Ten</MenuItem>
                           <MenuItem value={20}>Twenty</MenuItem>
                           <MenuItem value={30}>Thirty</MenuItem> */}
-                        {researchAreas.map((area) => (
-                          <MenuItem value={area}>{area}</MenuItem>
-                        ))}
-                      </Select>
+                          {researchAreas.map((area) => (
+                            <MenuItem value={area}>{area}</MenuItem>
+                          ))}
+                        </Select>
+                      </Grid>
+                    </Grid>
+
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <InputLabel
+                        id='demo-simple-select-label'
+                        style={{ color: 'black' }}
+                      >
+                        Topics :
+                      </InputLabel>
+                      <InputLabel id='demo-simple-select-label'>
+                        <i>
+                          Enter at most four topics (categories, themes, areas).
+                        </i>
+                      </InputLabel>
+                      <TextField
+                        type='text'
+                        placeholder='Topic 1'
+                        variant='outlined'
+                        fullWidth
+                        required
+                        style={{ paddingTop: '7px' }}
+                        name='t1'
+                      />
+                      <TextField
+                        type='text'
+                        placeholder='Topic 2'
+                        variant='outlined'
+                        fullWidth
+                        required
+                        style={{ paddingTop: '7px' }}
+                        name='t2'
+                      />
+                      <TextField
+                        type='text'
+                        placeholder='Topic 3'
+                        variant='outlined'
+                        fullWidth
+                        required
+                        style={{ paddingTop: '7px' }}
+                        name='t3'
+                      />
+                      <TextField
+                        type='text'
+                        placeholder='Topic 4'
+                        variant='outlined'
+                        fullWidth
+                        required
+                        style={{ paddingTop: '7px' }}
+                        name='t4'
+                      />
+                    </Grid>
+
+                    <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                      <Button
+                        type='submit'
+                        variant='contained'
+                        color='primary'
+                        fullWidth
+                        sx={{ backgroundColor: '#243f5f' }}
+                      >
+                        Submit
+                      </Button>
                     </Grid>
                   </Grid>
-
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <InputLabel
-                      id='demo-simple-select-label'
-                      style={{ color: 'black' }}
-                    >
-                      Topics :
-                    </InputLabel>
-                    <InputLabel id='demo-simple-select-label'>
-                      <i>
-                        Enter at most four topics (categories, themes, areas).
-                      </i>
-                    </InputLabel>
-                    <TextField
-                      type='text'
-                      placeholder='Topic 1'
-                      variant='outlined'
-                      fullWidth
-                      required
-                      style={{ paddingTop: '7px' }}
-                      name='t1'
-                    />
-                    <TextField
-                      type='text'
-                      placeholder='Topic 2'
-                      variant='outlined'
-                      fullWidth
-                      required
-                      style={{ paddingTop: '7px' }}
-                      name='t2'
-                    />
-                    <TextField
-                      type='text'
-                      placeholder='Topic 3'
-                      variant='outlined'
-                      fullWidth
-                      required
-                      style={{ paddingTop: '7px' }}
-                      name='t3'
-                    />
-                    <TextField
-                      type='text'
-                      placeholder='Topic 4'
-                      variant='outlined'
-                      fullWidth
-                      required
-                      style={{ paddingTop: '7px' }}
-                      name='t4'
-                    />
-                  </Grid>
-
-                  <Grid item xs={12} style={{ paddingTop: '20px' }}>
-                    <Button
-                      type='submit'
-                      variant='contained'
-                      color='primary'
-                      fullWidth
-                      sx={{ backgroundColor: '#243f5f' }}
-                    >
-                      Submit
-                    </Button>
-                  </Grid>
-                </Grid>
-              </CardContent>
-            </Card>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </div>
       </div>
