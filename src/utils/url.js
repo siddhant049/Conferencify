@@ -11,4 +11,5 @@ export const urlMap = {
   getAllConferences: `${conferenceUrl}/all`,
   submitPaper: `${conferenceUrl}/paper/submit`,
   addReviewer: `${conferenceUrl}/reviewer/add`,
+  assignReviewer: `${conferenceUrl}/reviewer/assign`,
 };

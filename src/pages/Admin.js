@@ -19,6 +19,7 @@ import AccordionSummary from '@mui/material/AccordionSummary';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import ContentCopyIcon from '@mui/icons-material/ContentCopy';
 import Sendemail from './Sendemail';
+import ExportExcel from '../components/ExcelExport';
 
 import CheckCircleOutlineIcon from '@mui/icons-material/CheckCircleOutline';
 import PendingIcon from '@mui/icons-material/Pending';
@@ -38,22 +39,34 @@ import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 const iconMap = {
   Unassigned: (
     <Tooltip title='No reviewer assigned'>
-      <PersonAddAltIcon sx={{ color: 'blue' }} />
+      <p style={{ display: 'flex', alignItems: 'center' }}>
+        Unassigned
+        <PersonAddAltIcon sx={{ color: 'blue', marginLeft: '5px' }} />
+      </p>
     </Tooltip>
   ),
   Pending: (
     <Tooltip title='Review Pending'>
-      <PendingIcon sx={{ color: 'grey' }} />
+      <p style={{ display: 'flex', alignItems: 'center' }}>
+        Pending
+        <PendingIcon sx={{ color: 'grey', marginLeft: '5px' }} />
+      </p>
     </Tooltip>
   ),
   Approved: (
     <Tooltip title='Approved'>
-      <CheckCircleOutlineIcon sx={{ color: 'green' }} />
+      <p style={{ display: 'flex', alignItems: 'center' }}>
+        Approved
+        <CheckCircleOutlineIcon sx={{ color: 'green', marginLeft: '5px' }} />
+      </p>
     </Tooltip>
   ),
   Rejected: (
     <Tooltip title='Rejected'>
-      <CancelIcon sx={{ color: 'red' }} />
+      <p style={{ display: 'flex', alignItems: 'center' }}>
+        Rejected
+        <CancelIcon sx={{ color: 'red', marginLeft: '5px' }} />
+      </p>
     </Tooltip>
   ),
 };
@@ -111,6 +124,19 @@ const Admin = () => {
   const baseUrl = linkArr[0] + '//' + linkArr[2];
   const publishingLink = `${baseUrl}/publisher/${conferenceData?._id}`;
 
+  const ExcelExportData = papers
+    ? papers.map((paper) => {
+        return {
+          'Paper ID': paper.paperId,
+          Title: paper.title,
+          Keywords: paper.keywords,
+          Abstract: paper.abstract,
+          'Plagariasm %': paper.plagiarismPercentage,
+          'Review Status': paper.status,
+        };
+      })
+    : [];
+
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
@@ -122,6 +148,7 @@ const Admin = () => {
   const [reviewer, setreviewer] = React.useState('');
 
   const handleChangeReviewer = (event) => {
+    console.log(reviewer);
     setreviewer(event.target.value);
   };
 
@@ -162,9 +189,31 @@ const Admin = () => {
     setIsCollapsibleOpen(true);
   };
 
-  const isLogged = isLoggedIn();
+  const handlerAssignReviewer = async (event, paperId) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    setIsModalOpen(true);
+
+    const responseData = await postData(urlMap.assignReviewer, {
+      conferenceId: confId,
+      reviewerId: data.get('assignedReviewer'),
+      paperId: paperId,
+    });
+    setIsModalOpen(false);
+
+    setCollapsibleProperties({
+      severity:
+        responseData.success === true
+          ? MessageSeverity.success
+          : MessageSeverity.error,
+      message: responseData.message,
+    });
+    setIsCollapsibleOpen(true);
+  };
+
   useEffect(() => {
-    if (!isLogged) {
+    if (!isLoggedIn()) {
       navigate('/login');
     }
 
@@ -204,18 +253,20 @@ const Admin = () => {
               <h1>Admin Dashboard</h1>
             </div>
             <div className='roleHeading'>
-              <h3>Confernce: {conferenceData.acronym}</h3>{' '}
+              <h3>Conference: {conferenceData.acronym}</h3>{' '}
             </div>
 
             <div className='outerUrlContainer'>
               <h4 className='urlHeading'>CFP Link: </h4>
               <div className='copyUrlContainer'>
                 <p className='urlLink'>{`${publishingLink}`} </p>{' '}
-                {!isLinkCopied ? (
-                  <ContentCopyIcon className='urlLogo' onClick={handleCopy} />
-                ) : (
-                  <ContentCopyTwoToneIcon className='urlLogo' />
-                )}
+                <Tooltip title={isLinkCopied ? 'Copied!' : 'Copy Link'}>
+                  {!isLinkCopied ? (
+                    <ContentCopyIcon className='urlLogo' onClick={handleCopy} />
+                  ) : (
+                    <ContentCopyTwoToneIcon className='urlLogo' />
+                  )}
+                </Tooltip>
               </div>
             </div>
             <CollapsibleMessage
@@ -243,11 +294,15 @@ const Admin = () => {
               </Box>
               <TabPanel value={value} index={0}>
                 <div style={{ marginRight: '70px', marginLeft: '30px' }}>
+                  <ExportExcel
+                    excelData={ExcelExportData}
+                    fileName={'Conference Report'}
+                  />
                   {papers.map((paper) => {
                     return (
                       <Accordion
-                        expanded={expanded === 'panel1'}
-                        onChange={handleChangeaccordition('panel1')}
+                        expanded={expanded === paper._id}
+                        onChange={handleChangeaccordition(paper._id)}
                         key={paper._id}
                       >
                         <AccordionSummary
@@ -268,7 +323,12 @@ const Admin = () => {
                           </Typography>
                         </AccordionSummary>
                         <AccordionDetails>
-                          <Typography>
+                          <Typography
+                            component='form'
+                            onSubmit={(event) => {
+                              handlerAssignReviewer(event, paper._id);
+                            }}
+                          >
                             <h5>Authors name:</h5>
                             {paper.authors.map((author) => (
                               <div>{author.name}</div>
@@ -288,13 +348,18 @@ const Admin = () => {
                                 labelId='demo-simple-select-label'
                                 id='demo-simple-select'
                                 label='Assgin a reviewer'
-                                value={reviewer}
+                                value={
+                                  reviewer === '' ? paper.reviewer : reviewer
+                                }
                                 onChange={handleChangeReviewer}
                                 style={{ minWidth: 250 }}
+                                name='assignedReviewer'
                               >
-                                <MenuItem value={10}>Reviewer 1</MenuItem>
-                                <MenuItem value={20}>Reviewer 2</MenuItem>
-                                <MenuItem value={30}>Reviewer 3</MenuItem>
+                                {conferenceData.reviewers.map((reviewer) => (
+                                  <MenuItem value={reviewer.userId}>
+                                    {reviewer.alias}
+                                  </MenuItem>
+                                ))}
                               </Select>
                             </FormControl>
                             <FormControl>
@@ -404,7 +469,12 @@ const Admin = () => {
                 </Card>
               </TabPanel>
               <TabPanel value={value} index={2}>
-                <Sendemail />
+                <Sendemail
+                  papers={papers}
+                  setIsModalOpen={setIsModalOpen}
+                  setIsCollapsibleOpen={setIsCollapsibleOpen}
+                  iconMap={iconMap}
+                />
               </TabPanel>
             </Box>
           </div>

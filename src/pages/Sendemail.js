@@ -25,36 +25,18 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-import { TextField } from '@mui/material';
+import { MenuItem, Select, TextField } from '@mui/material';
 
 import Navbar from '../components/Navbar';
 import classesinfo from './sendemail.module.css';
 
-function createData(name, calories, fat, carbs, protein) {
+function createData(paperId, paperTitle, status) {
   return {
-    name,
-    calories,
-    fat,
-    carbs,
-    protein,
+    paperId,
+    paperTitle,
+    status,
   };
 }
-
-const rows = [
-  createData('Cupcake', 305, 3.7),
-  createData('Donut', 452, 25.0),
-  createData('Eclair', 262, 16.0),
-  createData('Frozen yoghurt', 159, 6.0),
-  createData('Gingerbread', 356, 16.0),
-  createData('Honeycomb', 408, 3.2),
-  createData('Ice cream sandwich', 237, 9.0),
-  createData('Jelly Bean', 375, 0.0),
-  createData('KitKat', 518, 26.0),
-  createData('Lollipop', 392, 0.2),
-  createData('Marshmallow', 318, 0),
-  createData('Nougat', 360, 19.0),
-  createData('Oreo', 437, 18.0),
-];
 
 function descendingComparator(a, b, orderBy) {
   if (b[orderBy] < a[orderBy]) {
@@ -90,22 +72,22 @@ function stableSort(array, comparator) {
 
 const headCells = [
   {
-    id: 'name',
+    id: 'paperId',
     numeric: false,
     disablePadding: true,
-    label: 'Full Name',
+    label: 'Paper ID',
   },
   {
-    id: 'PaperTitle',
+    id: 'paperTitle',
     numeric: true,
     disablePadding: false,
     label: 'Paper Title',
   },
   {
-    id: 'Emailaddress',
+    id: 'status',
     numeric: true,
     disablePadding: false,
-    label: 'Email ID',
+    label: 'Status',
   },
 ];
 
@@ -132,7 +114,7 @@ function EnhancedTableHead(props) {
             checked={rowCount > 0 && numSelected === rowCount}
             onChange={onSelectAllClick}
             inputProps={{
-              'aria-label': 'select all desserts',
+              'aria-label': 'select all papers',
             }}
           />
         </TableCell>
@@ -172,44 +154,23 @@ EnhancedTableHead.propTypes = {
 };
 
 function EnhancedTableToolbar(props) {
-  const { numSelected } = props;
+  const { numSelected, filterValue, setFilterValue, rows, setRows, allRows } =
+    props;
 
-  // const [modal,setmodal]=useState(false);
+  const handleFilterChange = (event) => {
+    const val = event.target.value;
+    setFilterValue(val);
 
-  // const handleClose = () => {
-  //   setmodal(false);
-  // };
+    if (val === 'All') {
+      return setRows(allRows);
+    }
 
-  // const handleOpen = () => {
-  //   setmodal(true);
-  // };
+    const filteredRows = allRows.filter((row) => row.status === val);
+    setRows(filteredRows);
+  };
 
   return (
     <>
-      {/* <div>
-      <Modal size='lg'
-        // isOpen={modal}
-        open={modal}
-        onClose={handleClose}
-
-        style={{
-          position: 'absolute',
-          border: '2px solid #000',
-          backgroundColor: 'gray',
-          boxShadow: '2px solid black',
-          height:80,
-          width: 240,
-          margin: 'auto'
-        }}
-        
-        >
-        <ModalHeader >
-            POP UP
-        </ModalHeader>
-      </Modal>
-
-    </div> */}
-
       <Toolbar
         sx={{
           pl: { sm: 2 },
@@ -239,24 +200,28 @@ function EnhancedTableToolbar(props) {
             id='tableTitle'
             component='div'
           >
-            Nutrition
+            Send Email
           </Typography>
         )}
 
-        {numSelected > 0 ? (
-          <Tooltip title='Send Email'>
-            <IconButton>
-              <ArrowOutwardIcon type='submit' />
-              {/* <ArrowOutwardIcon onClick={handleOpen}/> */}
-            </IconButton>
-          </Tooltip>
-        ) : (
-          <Tooltip title='Filter list'>
-            <IconButton>
-              <FilterListIcon />
-            </IconButton>
-          </Tooltip>
-        )}
+        <Tooltip title='Filter list'>
+          <Select
+            sx={{ marginLeft: '12px' }}
+            labelId='demo-simple-select-label'
+            id='demo-simple-select'
+            label='Assgin a reviewer'
+            value={filterValue}
+            onChange={handleFilterChange}
+            style={{ minWidth: 250 }}
+            name='assignedReviewer'
+          >
+            <MenuItem value={'All'}>All</MenuItem>
+            <MenuItem value={'Unassigned'}>Unassigned</MenuItem>
+            <MenuItem value={'Pending'}>Pending</MenuItem>
+            <MenuItem value={'Approved'}>Approved</MenuItem>
+            <MenuItem value={'Rejected'}>Rejected</MenuItem>
+          </Select>
+        </Tooltip>
       </Toolbar>
     </>
   );
@@ -266,13 +231,20 @@ EnhancedTableToolbar.propTypes = {
   numSelected: PropTypes.number.isRequired,
 };
 
-export default function EnhancedTable() {
+export default function EnhancedTable({
+  papers,
+  setIsModalOpen,
+  setIsCollapsibleOpen,
+  iconMap,
+}) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
   const [selected, setSelected] = React.useState([]);
   const [page, setPage] = React.useState(0);
   const [dense, setDense] = React.useState(false);
   const [rowsPerPage, setRowsPerPage] = React.useState(20);
+  const [rows, setRows] = React.useState([]);
+  const [filterValue, setFilterValue] = React.useState('All');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -282,19 +254,21 @@ export default function EnhancedTable() {
 
   const handleSelectAllClick = (event) => {
     if (event.target.checked) {
-      const newSelected = rows.map((n) => n.name);
+      const newSelected = rows.map((n) => n.paperId);
       setSelected(newSelected);
       return;
     }
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  console.log([...selected]);
+
+  const handleClick = (event, paperId) => {
+    const selectedIndex = selected.indexOf(paperId);
     let newSelected = [];
 
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, paperId);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -322,11 +296,19 @@ export default function EnhancedTable() {
     setDense(event.target.checked);
   };
 
-  const isSelected = (name) => selected.indexOf(name) !== -1;
+  const isSelected = (paperId) => selected.indexOf(paperId) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
   const emptyRows =
     page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+
+  const allRows = papers.map((paper) =>
+    createData(paper.paperId, paper.title, paper.status)
+  );
+
+  React.useEffect(() => {
+    setRows(allRows);
+  }, []);
 
   return (
     <>
@@ -336,7 +318,14 @@ export default function EnhancedTable() {
             <Box sx={{ width: '90%' }}>
               <Paper sx={{ width: '100%', mb: 2, paddingBottom: '20px' }}>
                 <form>
-                  <EnhancedTableToolbar numSelected={selected.length} />
+                  <EnhancedTableToolbar
+                    numSelected={selected.length}
+                    filterValue={filterValue}
+                    setFilterValue={setFilterValue}
+                    rows={rows}
+                    setRows={setRows}
+                    allRows={allRows}
+                  />
                   <TableContainer>
                     <Table
                       sx={{ minWidth: 750 }}
@@ -358,19 +347,19 @@ export default function EnhancedTable() {
                             page * rowsPerPage + rowsPerPage
                           )
                           .map((row, index) => {
-                            const isItemSelected = isSelected(row.name);
+                            const isItemSelected = isSelected(row.paperId);
                             const labelId = `enhanced-table-checkbox-${index}`;
 
                             return (
                               <TableRow
                                 hover
                                 onClick={(event) =>
-                                  handleClick(event, row.name)
+                                  handleClick(event, row.paperId)
                                 }
                                 role='checkbox'
                                 aria-checked={isItemSelected}
                                 tabIndex={-1}
-                                key={row.name}
+                                key={row.paperId}
                                 selected={isItemSelected}
                               >
                                 <TableCell padding='checkbox'>
@@ -388,12 +377,16 @@ export default function EnhancedTable() {
                                   scope='row'
                                   padding='none'
                                 >
-                                  {row.name}
+                                  {row.paperId}
                                 </TableCell>
                                 <TableCell align='right'>
-                                  {row.calories}
+                                  {row.paperTitle}
                                 </TableCell>
-                                <TableCell align='right'>{row.fat}</TableCell>
+                                <TableCell align='right'>
+                                  <div style={{ display: 'inline-block' }}>
+                                    {iconMap[row.status]}
+                                  </div>
+                                </TableCell>
                               </TableRow>
                             );
                           })}
