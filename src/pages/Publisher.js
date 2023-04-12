@@ -5,6 +5,7 @@ import CircularProgressWithLabel from '../components/ProgressBar';
 import React from 'react';
 import Navbar from '../components/Navbar';
 import './publisher.css';
+import * as pdfjsLib from 'pdfjs-dist';
 
 import {
   Grid,
@@ -20,12 +21,14 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { motion } from 'framer-motion';
 import { useNavigate, useParams } from 'react-router';
 import { isLoggedIn } from '../utils/auth';
-import { postData } from '../axios';
+import { plagCheck, postData } from '../axios';
 import CollapsibleMessage, {
   MessageSeverity,
 } from '../components/CollapsibleMessage';
 import LoadingModal from '../components/LoadingModal';
 import { urlMap } from '../utils/url';
+
+pdfjsLib.GlobalWorkerOptions.workerSrc = `//cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjsLib.version}/pdf.worker.js`;
 
 function Publisher() {
   const navigate = useNavigate();
@@ -41,6 +44,9 @@ function Publisher() {
     severity: MessageSeverity.info,
     message: '',
   });
+  const [plagPercent, setPlagPercent] = useState(null);
+  const [isPlagChecking, setIsPlagChecking] = useState(false);
+
   function handleChange(event) {
     setFile(event.target.files[0]);
   }
@@ -108,6 +114,34 @@ function Publisher() {
       message: responseData.message,
     });
     setIsCollapsibleOpen(true);
+  };
+
+  const handlePlagCheck = async (content) => {
+    if (!file) {
+      return alert('First upload the file to perform the plagariasm check');
+    }
+
+    setIsPlagChecking(true);
+
+    const loadingTask = pdfjsLib.getDocument(URL.createObjectURL(file));
+    const pdf = await loadingTask.promise;
+    const maxPages = pdf.numPages;
+    let text = '';
+
+    for (let i = 1; i <= maxPages; i++) {
+      const page = await pdf.getPage(i);
+      const content = await page.getTextContent();
+      const pageText = content.items.map((item) => item.str).join('');
+      text += pageText;
+    }
+    text = text.length >= 9998 ? text.substring(0, 9998) : text;
+
+    console.log(text);
+    const responseData = await plagCheck(text);
+
+    console.log(responseData);
+    setPlagPercent(responseData.percentPlagiarism);
+    setIsPlagChecking(false);
   };
 
   useEffect(() => {
@@ -261,6 +295,33 @@ function Publisher() {
                     </Button>
                   </div>
                 </div>
+              </Grid>
+              <Grid item xs={12} style={{ paddingTop: '20px' }}>
+                <Typography>
+                  <em>Plagariasm Check</em>
+                </Typography>
+                <Typography variant='caption' sx={{ marginBottom: '5px' }}>
+                  Note: This Plagariasm check is for user convenience and checks
+                  only first 10,000 characters. Final Plagariasm check would be
+                  done later using Turnitin.
+                </Typography>{' '}
+                <br />
+                {isPlagChecking ? (
+                  <CircularProgress sx={{ color: '#0c5285' }} />
+                ) : plagPercent ? (
+                  <Typography variant='body1'>
+                    Your plagariasm percent is {plagPercent}
+                  </Typography>
+                ) : (
+                  <Button
+                    variant='contained'
+                    color='primary'
+                    sx={{ backgroundColor: '#243f5f' }}
+                    onClick={handlePlagCheck}
+                  >
+                    Plag Check Now!
+                  </Button>
+                )}
               </Grid>
               <Grid item xs={12} style={{ paddingTop: '20px' }}>
                 <Button
