@@ -1,0 +1,204 @@
+[debug] [2023-04-12T17:27:56.495Z] ----------------------------------------------------------------------
+[debug] [2023-04-12T17:27:56.498Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init hosting:github
+[debug] [2023-04-12T17:27:56.499Z] CLI Version:   11.25.3
+[debug] [2023-04-12T17:27:56.499Z] Platform:      win32
+[debug] [2023-04-12T17:27:56.499Z] Node Version:  v16.15.1
+[debug] [2023-04-12T17:27:56.513Z] Time:          Wed Apr 12 2023 22:57:56 GMT+0530 (India Standard Time)
+[debug] [2023-04-12T17:27:56.513Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-12T17:27:56.606Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-12T17:27:56.607Z] > authorizing via signed-in user (conferencifyofficial@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\shiva\OneDrive\Desktop\Conferencify\frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-04-12T17:27:56.691Z] Using project from CLI flag: conferencify-e6615
+[debug] [2023-04-12T17:27:56.703Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 [none]
+[debug] [2023-04-12T17:27:57.266Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 200
+[debug] [2023-04-12T17:27:57.266Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 {"projectId":"conferencify-e6615","projectNumber":"283966692277","displayName":"conferencify","name":"projects/conferencify-e6615","resources":{"hostingSite":"conferencify-e6615","storageBucket":"conferencify-e6615.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_2f441dad-20dd-4e0f-8556-96562b7e971c"}
+[info] i  Using project conferencify-e6615 (conferencify) 
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at C:\Users\shiva\OneDrive\Desktop\Conferencify\frontend 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=947867220&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-04-12T17:28:05.682Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2023-04-12T17:28:05.683Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2023-04-12T17:28:06.131Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2023-04-12T17:28:06.131Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2023-04-12T17:28:06.147Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2023-04-12T17:28:06.612Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2023-04-12T17:28:06.612Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"dp-shivam","id":130574080,"node_id":"U_kgDOB8hnAA","avatar_url":"https://avatars.githubusercontent.com/u/130574080?v=4","gravatar_id":"","url":"https://api.github.com/users/dp-shivam","html_url":"https://github.com/dp-shivam","followers_url":"https://api.github.com/users/dp-shivam/followers","following_url":"https://api.github.com/users/dp-shivam/following{/other_user}","gists_url":"https://api.github.com/users/dp-shivam/gists{/gist_id}","starred_url":"https://api.github.com/users/dp-shivam/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dp-shivam/subscriptions","organizations_url":"https://api.github.com/users/dp-shivam/orgs","repos_url":"https://api.github.com/users/dp-shivam/repos","events_url":"https://api.github.com/users/dp-shivam/events{/privacy}","received_events_url":"https://api.github.com/users/dp-shivam/received_events","type":"User","site_admin":false,"name":null,"company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":0,"public_gists":0,"followers":0,"following":0,"created_at":"2023-04-12T13:44:17Z","updated_at":"2023-04-12T13:44:17Z","private_gists":0,"total_private_repos":0,"owned_private_repos":0,"disk_usage":0,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as dp-shivam 
+[info] 
+[debug] [2023-04-12T17:28:41.127Z] ----------------------------------------------------------------------
+[debug] [2023-04-12T17:28:41.129Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init hosting:github
+[debug] [2023-04-12T17:28:41.129Z] CLI Version:   11.25.3
+[debug] [2023-04-12T17:28:41.130Z] Platform:      win32
+[debug] [2023-04-12T17:28:41.130Z] Node Version:  v16.15.1
+[debug] [2023-04-12T17:28:41.131Z] Time:          Wed Apr 12 2023 22:58:41 GMT+0530 (India Standard Time)
+[debug] [2023-04-12T17:28:41.131Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-12T17:28:41.207Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-12T17:28:41.207Z] > authorizing via signed-in user (conferencifyofficial@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\shiva\OneDrive\Desktop\Conferencify\frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-04-12T17:28:45.892Z] Using project from CLI flag: conferencify-e6615
+[debug] [2023-04-12T17:28:45.895Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 [none]
+[debug] [2023-04-12T17:28:46.643Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 200
+[debug] [2023-04-12T17:28:46.643Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 {"projectId":"conferencify-e6615","projectNumber":"283966692277","displayName":"conferencify","name":"projects/conferencify-e6615","resources":{"hostingSite":"conferencify-e6615","storageBucket":"conferencify-e6615.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_2f441dad-20dd-4e0f-8556-96562b7e971c"}
+[info] i  Using project conferencify-e6615 (conferencify) 
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at C:\Users\shiva\OneDrive\Desktop\Conferencify\frontend 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=800156171&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-04-12T17:28:47.266Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2023-04-12T17:28:47.266Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2023-04-12T17:28:47.717Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2023-04-12T17:28:47.717Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2023-04-12T17:28:47.725Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2023-04-12T17:28:48.154Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2023-04-12T17:28:48.154Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"dp-shivam","id":130574080,"node_id":"U_kgDOB8hnAA","avatar_url":"https://avatars.githubusercontent.com/u/130574080?v=4","gravatar_id":"","url":"https://api.github.com/users/dp-shivam","html_url":"https://github.com/dp-shivam","followers_url":"https://api.github.com/users/dp-shivam/followers","following_url":"https://api.github.com/users/dp-shivam/following{/other_user}","gists_url":"https://api.github.com/users/dp-shivam/gists{/gist_id}","starred_url":"https://api.github.com/users/dp-shivam/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/dp-shivam/subscriptions","organizations_url":"https://api.github.com/users/dp-shivam/orgs","repos_url":"https://api.github.com/users/dp-shivam/repos","events_url":"https://api.github.com/users/dp-shivam/events{/privacy}","received_events_url":"https://api.github.com/users/dp-shivam/received_events","type":"User","site_admin":false,"name":null,"company":null,"blog":"","location":null,"email":null,"hireable":null,"bio":null,"twitter_username":null,"public_repos":0,"public_gists":0,"followers":0,"following":0,"created_at":"2023-04-12T13:44:17Z","updated_at":"2023-04-12T13:44:17Z","private_gists":0,"total_private_repos":0,"owned_private_repos":0,"disk_usage":0,"collaborators":0,"two_factor_authentication":false,"plan":{"name":"free","space":976562499,"collaborators":0,"private_repos":10000}}
+[info] 
+[info] +  Success! Logged into GitHub as dp-shivam 
+[info] 
+[debug] [2023-04-12T17:29:08.234Z] ----------------------------------------------------------------------
+[debug] [2023-04-12T17:29:08.236Z] Command:       C:\Program Files\nodejs\node.exe C:\Program Files\nodejs\node_modules\firebase-tools\lib\bin\firebase.js init hosting:github
+[debug] [2023-04-12T17:29:08.236Z] CLI Version:   11.25.3
+[debug] [2023-04-12T17:29:08.237Z] Platform:      win32
+[debug] [2023-04-12T17:29:08.237Z] Node Version:  v16.15.1
+[debug] [2023-04-12T17:29:08.238Z] Time:          Wed Apr 12 2023 22:59:08 GMT+0530 (India Standard Time)
+[debug] [2023-04-12T17:29:08.238Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2023-04-12T17:29:08.306Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2023-04-12T17:29:08.306Z] > authorizing via signed-in user (conferencifyofficial@gmail.com)
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\shiva\OneDrive\Desktop\Conferencify\frontend
+
+Before we get started, keep in mind:
+
+  * You are initializing within an existing Firebase project directory
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2023-04-12T17:29:10.051Z] Using project from CLI flag: conferencify-e6615
+[debug] [2023-04-12T17:29:10.057Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 [none]
+[debug] [2023-04-12T17:29:10.558Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 200
+[debug] [2023-04-12T17:29:10.559Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/conferencify-e6615 {"projectId":"conferencify-e6615","projectNumber":"283966692277","displayName":"conferencify","name":"projects/conferencify-e6615","resources":{"hostingSite":"conferencify-e6615","storageBucket":"conferencify-e6615.appspot.com","locationId":"us-central"},"state":"ACTIVE","etag":"1_2f441dad-20dd-4e0f-8556-96562b7e971c"}
+[info] i  Using project conferencify-e6615 (conferencify) 
+[info] 
+=== Hosting:github Setup
+[info] 
+[info] i  Detected a .git folder at C:\Users\shiva\OneDrive\Desktop\Conferencify\frontend 
+[info] i  Authorizing with GitHub to upload your service account to a GitHub repository's secrets store. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://github.com/login/oauth/authorize?client_id=89cf50f02ac6aaed3484&state=688333698&redirect_uri=http%3A%2F%2Flocalhost%3A9005&scope=read%3Auser%20repo%20public_repo
+[info] 
+[info] Waiting for authentication...
+[debug] [2023-04-12T17:29:11.377Z] >>> [apiv2][query] POST https://github.com/login/oauth/access_token [none]
+[debug] [2023-04-12T17:29:11.378Z] >>> [apiv2][body] POST https://github.com/login/oauth/access_token [stream]
+[debug] [2023-04-12T17:29:11.813Z] <<< [apiv2][status] POST https://github.com/login/oauth/access_token 200
+[debug] [2023-04-12T17:29:11.813Z] <<< [apiv2][body] POST https://github.com/login/oauth/access_token {"access_token":"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","token_type":"bearer","scope":"read:user,repo"}
+[debug] [2023-04-12T17:29:11.835Z] >>> [apiv2][query] GET https://api.github.com/user [none]
+[debug] [2023-04-12T17:29:12.367Z] <<< [apiv2][status] GET https://api.github.com/user 200
+[debug] [2023-04-12T17:29:12.368Z] <<< [apiv2][body] GET https://api.github.com/user {"login":"shivamop-cyber","id":78635320,"node_id":"MDQ6VXNlcjc4NjM1MzIw","avatar_url":"https://avatars.githubusercontent.com/u/78635320?v=4","gravatar_id":"","url":"https://api.github.com/users/shivamop-cyber","html_url":"https://github.com/shivamop-cyber","followers_url":"https://api.github.com/users/shivamop-cyber/followers","following_url":"https://api.github.com/users/shivamop-cyber/following{/other_user}","gists_url":"https://api.github.com/users/shivamop-cyber/gists{/gist_id}","starred_url":"https://api.github.com/users/shivamop-cyber/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/shivamop-cyber/subscriptions","organizations_url":"https://api.github.com/users/shivamop-cyber/orgs","repos_url":"https://api.github.com/users/shivamop-cyber/repos","events_url":"https://api.github.com/users/shivamop-cyber/events{/privacy}","received_events_url":"https://api.github.com/users/shivamop-cyber/received_events","type":"User","site_admin":false,"name":"Shivam Singh","company":"Amity University","blog":"","location":"Noida","email":null,"hireable":null,"bio":"I'm a coding enthusiast","twitter_username":null,"public_repos":25,"public_gists":0,"followers":3,"following":3,"created_at":"2021-02-06T06:09:34Z","updated_at":"2023-04-12T13:49:29Z","private_gists":0,"total_private_repos":8,"owned_private_repos":8,"disk_usage":453149,"collaborators":4,"two_factor_authentication":false,"plan":{"name":"pro","space":976562499,"collaborators":0,"private_repos":9999}}
+[info] 
+[info] +  Success! Logged into GitHub as shivamop-cyber 
+[info] 
+[debug] [2023-04-12T17:30:03.412Z] >>> [apiv2][query] GET https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/public-key type=owner
+[debug] [2023-04-12T17:30:03.825Z] <<< [apiv2][status] GET https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/public-key 200
+[debug] [2023-04-12T17:30:03.825Z] <<< [apiv2][body] GET https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/public-key {"key_id":"568250167242549743","key":"ciczoFB+fKY8wHEndnZvcHVf6ybxoi2uTX0NcFoAngs="}
+[debug] [2023-04-12T17:30:03.828Z] >>> [apiv2][query] GET https://api.github.com/repos/siddhant049/Conferencify [none]
+[debug] [2023-04-12T17:30:04.257Z] <<< [apiv2][status] GET https://api.github.com/repos/siddhant049/Conferencify 200
+[debug] [2023-04-12T17:30:04.257Z] <<< [apiv2][body] GET https://api.github.com/repos/siddhant049/Conferencify {"id":596986655,"node_id":"R_kgDOI5VLHw","name":"Conferencify","full_name":"siddhant049/Conferencify","private":false,"owner":{"login":"siddhant049","id":86163744,"node_id":"MDQ6VXNlcjg2MTYzNzQ0","avatar_url":"https://avatars.githubusercontent.com/u/86163744?v=4","gravatar_id":"","url":"https://api.github.com/users/siddhant049","html_url":"https://github.com/siddhant049","followers_url":"https://api.github.com/users/siddhant049/followers","following_url":"https://api.github.com/users/siddhant049/following{/other_user}","gists_url":"https://api.github.com/users/siddhant049/gists{/gist_id}","starred_url":"https://api.github.com/users/siddhant049/starred{/owner}{/repo}","subscriptions_url":"https://api.github.com/users/siddhant049/subscriptions","organizations_url":"https://api.github.com/users/siddhant049/orgs","repos_url":"https://api.github.com/users/siddhant049/repos","events_url":"https://api.github.com/users/siddhant049/events{/privacy}","received_events_url":"https://api.github.com/users/siddhant049/received_events","type":"User","site_admin":false},"html_url":"https://github.com/siddhant049/Conferencify","description":null,"fork":false,"url":"https://api.github.com/repos/siddhant049/Conferencify","forks_url":"https://api.github.com/repos/siddhant049/Conferencify/forks","keys_url":"https://api.github.com/repos/siddhant049/Conferencify/keys{/key_id}","collaborators_url":"https://api.github.com/repos/siddhant049/Conferencify/collaborators{/collaborator}","teams_url":"https://api.github.com/repos/siddhant049/Conferencify/teams","hooks_url":"https://api.github.com/repos/siddhant049/Conferencify/hooks","issue_events_url":"https://api.github.com/repos/siddhant049/Conferencify/issues/events{/number}","events_url":"https://api.github.com/repos/siddhant049/Conferencify/events","assignees_url":"https://api.github.com/repos/siddhant049/Conferencify/assignees{/user}","branches_url":"https://api.github.com/repos/siddhant049/Conferencify/branches{/branch}","tags_url":"https://api.github.com/repos/siddhant049/Conferencify/tags","blobs_url":"https://api.github.com/repos/siddhant049/Conferencify/git/blobs{/sha}","git_tags_url":"https://api.github.com/repos/siddhant049/Conferencify/git/tags{/sha}","git_refs_url":"https://api.github.com/repos/siddhant049/Conferencify/git/refs{/sha}","trees_url":"https://api.github.com/repos/siddhant049/Conferencify/git/trees{/sha}","statuses_url":"https://api.github.com/repos/siddhant049/Conferencify/statuses/{sha}","languages_url":"https://api.github.com/repos/siddhant049/Conferencify/languages","stargazers_url":"https://api.github.com/repos/siddhant049/Conferencify/stargazers","contributors_url":"https://api.github.com/repos/siddhant049/Conferencify/contributors","subscribers_url":"https://api.github.com/repos/siddhant049/Conferencify/subscribers","subscription_url":"https://api.github.com/repos/siddhant049/Conferencify/subscription","commits_url":"https://api.github.com/repos/siddhant049/Conferencify/commits{/sha}","git_commits_url":"https://api.github.com/repos/siddhant049/Conferencify/git/commits{/sha}","comments_url":"https://api.github.com/repos/siddhant049/Conferencify/comments{/number}","issue_comment_url":"https://api.github.com/repos/siddhant049/Conferencify/issues/comments{/number}","contents_url":"https://api.github.com/repos/siddhant049/Conferencify/contents/{+path}","compare_url":"https://api.github.com/repos/siddhant049/Conferencify/compare/{base}...{head}","merges_url":"https://api.github.com/repos/siddhant049/Conferencify/merges","archive_url":"https://api.github.com/repos/siddhant049/Conferencify/{archive_format}{/ref}","downloads_url":"https://api.github.com/repos/siddhant049/Conferencify/downloads","issues_url":"https://api.github.com/repos/siddhant049/Conferencify/issues{/number}","pulls_url":"https://api.github.com/repos/siddhant049/Conferencify/pulls{/number}","milestones_url":"https://api.github.com/repos/siddhant049/Conferencify/milestones{/number}","notifications_url":"https://api.github.com/repos/siddhant049/Conferencify/notifications{?since,all,participating}","labels_url":"https://api.github.com/repos/siddhant049/Conferencify/labels{/name}","releases_url":"https://api.github.com/repos/siddhant049/Conferencify/releases{/id}","deployments_url":"https://api.github.com/repos/siddhant049/Conferencify/deployments","created_at":"2023-02-03T11:22:43Z","updated_at":"2023-02-25T11:09:01Z","pushed_at":"2023-04-12T16:59:07Z","git_url":"git://github.com/siddhant049/Conferencify.git","ssh_url":"git@github.com:siddhant049/Conferencify.git","clone_url":"https://github.com/siddhant049/Conferencify.git","svn_url":"https://github.com/siddhant049/Conferencify","homepage":null,"size":24239,"stargazers_count":0,"watchers_count":0,"language":"JavaScript","has_issues":true,"has_projects":true,"has_downloads":true,"has_wiki":true,"has_pages":false,"has_discussions":false,"forks_count":1,"mirror_url":null,"archived":false,"disabled":false,"open_issues_count":0,"license":null,"allow_forking":true,"is_template":false,"web_commit_signoff_required":false,"topics":[],"visibility":"public","forks":1,"open_issues":0,"watchers":0,"default_branch":"main","permissions":{"admin":false,"maintain":false,"push":true,"triage":true,"pull":true},"temp_clone_token":"","allow_squash_merge":true,"allow_merge_commit":true,"allow_rebase_merge":true,"allow_auto_merge":false,"delete_branch_on_merge":false,"allow_update_branch":false,"use_squash_pr_title_as_default":false,"squash_merge_commit_message":"COMMIT_MESSAGES","squash_merge_commit_title":"COMMIT_OR_PR_TITLE","merge_commit_message":"PR_TITLE","merge_commit_title":"MERGE_MESSAGE","network_count":1,"subscribers_count":1}
+[debug] [2023-04-12T17:30:04.258Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts [none]
+[debug] [2023-04-12T17:30:04.259Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts {"accountId":"github-action-596986655","serviceAccount":{"displayName":"GitHub Actions (siddhant049/Conferencify)","description":"A service account with permission to deploy to Firebase Hosting for the GitHub repository siddhant049/Conferencify"}}
+[debug] [2023-04-12T17:30:05.106Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts 409
+[debug] [2023-04-12T17:30:05.106Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts [omitted]
+[debug] [2023-04-12T17:30:05.107Z] >>> [apiv2][query] GET https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com [none]
+[debug] [2023-04-12T17:30:05.110Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:getIamPolicy [none]
+[debug] [2023-04-12T17:30:06.628Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:getIamPolicy 200
+[debug] [2023-04-12T17:30:06.629Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:getIamPolicy {"version":1,"etag":"BwX44Pta8kM=","bindings":[{"role":"roles/editor","members":["serviceAccount:conferencify-e6615@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-283966692277@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-283966692277@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:conferencifyofficial@gmail.com"]},{"role":"roles/pubsub.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]}]}
+[debug] [2023-04-12T17:30:06.652Z] <<< [apiv2][status] GET https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com 200
+[debug] [2023-04-12T17:30:06.653Z] <<< [apiv2][body] GET https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com {"name":"projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com","projectId":"conferencify-e6615","uniqueId":"113467247118906684433","email":"github-action-596986655@conferencify-e6615.iam.gserviceaccount.com","displayName":"GitHub Actions (siddhant049/Conferencify)","etag":"MDEwMjE5MjA=","description":"A service account with permission to deploy to Firebase Hosting for the GitHub repository siddhant049/Conferencify","oauth2ClientId":"113467247118906684433"}
+[debug] [2023-04-12T17:30:06.655Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:setIamPolicy [none]
+[debug] [2023-04-12T17:30:06.655Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:setIamPolicy {"policy":{"version":1,"etag":"BwX44Pta8kM=","bindings":[{"role":"roles/editor","members":["serviceAccount:conferencify-e6615@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-283966692277@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-283966692277@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:conferencifyofficial@gmail.com"]},{"role":"roles/pubsub.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]}]},"updateMask":"bindings"}
+[debug] [2023-04-12T17:30:08.836Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:setIamPolicy 200
+[debug] [2023-04-12T17:30:08.836Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/conferencify-e6615:setIamPolicy {"version":1,"etag":"BwX5JvXVcrw=","bindings":[{"role":"roles/editor","members":["serviceAccount:conferencify-e6615@appspot.gserviceaccount.com"]},{"role":"roles/firebase.managementServiceAgent","members":["serviceAccount:firebase-service-account@firebase-sa-management.iam.gserviceaccount.com","serviceAccount:service-283966692277@gcp-sa-firebase.iam.gserviceaccount.com"]},{"role":"roles/firebase.sdkAdminServiceAgent","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebaseauth.admin","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebasehosting.admin","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/firebaserules.system","members":["serviceAccount:service-283966692277@firebase-rules.iam.gserviceaccount.com"]},{"role":"roles/firebasestorage.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-firebasestorage.iam.gserviceaccount.com"]},{"role":"roles/firestore.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-firestore.iam.gserviceaccount.com"]},{"role":"roles/iam.serviceAccountTokenCreator","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/owner","members":["user:conferencifyofficial@gmail.com"]},{"role":"roles/pubsub.serviceAgent","members":["serviceAccount:service-283966692277@gcp-sa-pubsub.iam.gserviceaccount.com"]},{"role":"roles/run.viewer","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/serviceusage.apiKeysViewer","members":["serviceAccount:github-action-596986655@conferencify-e6615.iam.gserviceaccount.com"]},{"role":"roles/storage.admin","members":["serviceAccount:firebase-adminsdk-j6rp1@conferencify-e6615.iam.gserviceaccount.com"]}]}
+[debug] [2023-04-12T17:30:08.837Z] >>> [apiv2][query] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com/keys [none]
+[debug] [2023-04-12T17:30:08.838Z] >>> [apiv2][body] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com/keys {"keyAlgorithm":"KEY_ALG_UNSPECIFIED","privateKeyType":"TYPE_GOOGLE_CREDENTIALS_FILE"}
+[debug] [2023-04-12T17:30:10.824Z] <<< [apiv2][status] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com/keys 200
+[debug] [2023-04-12T17:30:10.825Z] <<< [apiv2][body] POST https://iam.googleapis.com/v1/projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com/keys {"name":"projects/conferencify-e6615/serviceAccounts/github-action-596986655@conferencify-e6615.iam.gserviceaccount.com/keys/276b8a9a2c291ee2891914e47d0d0cf1473fa793","privateKeyType":"TYPE_GOOGLE_CREDENTIALS_FILE","privateKeyData":"ewogICJ0eXBlIjogInNlcnZpY2VfYWNjb3VudCIsCiAgInByb2plY3RfaWQiOiAiY29uZmVyZW5jaWZ5LWU2NjE1IiwKICAicHJpdmF0ZV9rZXlfaWQiOiAiMjc2YjhhOWEyYzI5MWVlMjg5MTkxNGU0N2QwZDBjZjE0NzNmYTc5MyIsCiAgInByaXZhdGVfa2V5IjogIi0tLS0tQkVHSU4gUFJJVkFURSBLRVktLS0tLVxuTUlJRXZRSUJBREFOQmdrcWhraUc5dzBCQVFFRkFBU0NCS2N3Z2dTakFnRUFBb0lCQVFDbDkvTXMvRitINlcva1xuRzNVOWdzS04vMkw4Rmt6OEJyUnp1Uy9HaUZjUXh5cWNFNXl5TkZzL0tIT0lwdGRuOGd2TThuTnJYNFVwVUNEalxuQ3Q2enJXNFBSUkhsM2UwanZxMWRtQU5mRHZUWXpCUURkclY4cmdLNlVKS1M1VEdzMk15R1pobzh1RTRKeHg5S1xucjJwVlRtOVdOMm1Hcy9TaUJRcld4MWcweWtyNjRCWEU5MTNGQy83YUs1QXVvaFNwWGx2TFowRys0aHF3QWVpRFxuM0F0YnpSSytUWnMxZHhzMFJnTW5EMjBDS3FZZ3N3TGxWZkpFY25SbC9DSjI2MVN1VkpPNnpPZjhPMzhvZkdXRlxuaFhJdFFBaTNVWTd4OWRJeGgvdGJlYTlaWTV5NVlOKzFabXc5cGNoNWhoRFlUdkY4ZUJCUDU5bmpJc1hvMWZJYlxuOFhyZzJMZ3BBZ01CQUFFQ2dnRUFEVXluVDBScGROTUpVUEI4MW5raEZUOGc2OVd2SlZaMXRSekN0ZkJrdHE3WlxuREtEN01tSUU2bFNYM254TklGS2FiTG5FY3pjWUxQbHpheklxcXFBRUJPUDZaVTdCY3hielhqL0JUR2VleWZVZlxuaVBBRkpzaXNaZ2p4RitXWEU1UmJYazAxL3NYZmxnTy9iNDBMTXFzS2U3Q015NXNseUNwcWhnKzdFeDdmUDRkZVxuaXBJdlNFZDZQb05MbDM1RjRYSVhOQk9GWjd0cDFIVEVZVnRFOE8wY015anAvRmtjNkhObG1xNlFxTXNxZmhuc1xuUGhBcGhSZmwyeGxtaWJGVXFoWTh2V01LUFo5dnU3KzVVZFNkY1UySGZuRVZ5SWVOcFQyNjJWT2ZBUW54Z1lUM1xuWG9yVkF0WlRISDdEdE5xSHdlM0Z6M3FSTFJybFFBOU9PeGh0SXA4SXNRS0JnUURiQy8wOTIweGRoLzBLZDc2ZVxuVUNvSytlSXVadnVuNmFSeHRnc3ZEYjVxWGhsUFRhVEFmVlV5NXVmdC9Pb2tzeWVvUFo5ZkRlRTJXakp0eUJ5Z1xuZE1xWThMSXZocHZxS0xwbm9oUTE2Z0dRdC9XNnQzMWI3eTFKMjBvcjFmaVAzYk9ZbjdZaFZodnh3Z0ZEOTloTlxueW8xRUxOVDBxdjJIbE1ZaHgzQk02S2lUV1FLQmdRREI5NmtZcUZ3OWg5bWN5YjNxUlJrQ25VTzAvTlo1Z2g3MFxuU2wvOXQ2aWN2NnRjRHZYb3BOcFp4NkczNE4xcDZhNm5pUitFVFcxeVIwVlovQjdGZ25CRW4yYVZLS2xxNk1tMVxuYkhSY003SDF1UmszdTd5ZXAreWhmekFRZFB4T3RmWGEzRHNQVzZsT3JGeWQ4OFlmTGNOWmZaSjRicklkMit3cVxuYTBZZUhrekJVUUtCZ0FtYzBSUXgxM3dUUjZ0NTdjZU14UXVPUTdxOWtqV2dMek0rUmVkZXR3aDc4S2htUStDZVxubjJxSWI0MG1HREJjSEZWcHZ1Q3cvejBmWUM4cEpQaDFwNTVta2FzOFFRTlpualNHREZVQlcrZzU2bkt6TXJFaVxuSWQ2bjNPMW5pbXpsMGNmVTJtMUVGaDNaNGF4VjZBd2g0MmttZm9IdUx3b1FJVkhDS3M5MU5sQ2hBb0dBWER0aVxubWNuOHlubGRuYk5FYmpCYkd5WWl1dDM3TWg0UWtBTUpzQUJ6MmMwK00zRWR0M2trSnNySmVFRWhwNm9wbFpxYlxuZFBMSVZ5M1NxVjQ4VjVpVnY5dTRFTGNjRUMwUE5RaVVMLytZNElvYWxxamJvT21pbUl4OUUyWTlUMFF3MnRnYlxuOFVxWnNFSS9iQkF0cGtmQmV6MDl0NnlUWDZWaW9DMFFVMlAvQlhFQ2dZRUF1eWFuNExuZTlBVXJQU3prRmhyNVxuUkVDZWowMmlqcVAxUmVvc0o5TGdOWTZmQUlRWTJ4SHpNVVUyRWpVWForNEpQMUM3WnpZY09TMzRuaXp4d00rWlxuM0FtTjU0YXEydWExMFhlVERiY0ZxRWpramhOMU5QbnFPUFRVSlQvbVkyZ2kvSmlma3JUbUFDYTU5dzJDUFRBcVxuNDVyQ0kxdDdDSHhPbThUOTF0V2R6RFU9XG4tLS0tLUVORCBQUklWQVRFIEtFWS0tLS0tXG4iLAogICJjbGllbnRfZW1haWwiOiAiZ2l0aHViLWFjdGlvbi01OTY5ODY2NTVAY29uZmVyZW5jaWZ5LWU2NjE1LmlhbS5nc2VydmljZWFjY291bnQuY29tIiwKICAiY2xpZW50X2lkIjogIjExMzQ2NzI0NzExODkwNjY4NDQzMyIsCiAgImF1dGhfdXJpIjogImh0dHBzOi8vYWNjb3VudHMuZ29vZ2xlLmNvbS9vL29hdXRoMi9hdXRoIiwKICAidG9rZW5fdXJpIjogImh0dHBzOi8vb2F1dGgyLmdvb2dsZWFwaXMuY29tL3Rva2VuIiwKICAiYXV0aF9wcm92aWRlcl94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL29hdXRoMi92MS9jZXJ0cyIsCiAgImNsaWVudF94NTA5X2NlcnRfdXJsIjogImh0dHBzOi8vd3d3Lmdvb2dsZWFwaXMuY29tL3JvYm90L3YxL21ldGFkYXRhL3g1MDkvZ2l0aHViLWFjdGlvbi01OTY5ODY2NTUlNDBjb25mZXJlbmNpZnktZTY2MTUuaWFtLmdzZXJ2aWNlYWNjb3VudC5jb20iCn0K","validAfterTime":"2023-04-12T17:30:13Z","validBeforeTime":"9999-12-31T23:59:59Z","keyAlgorithm":"KEY_ALG_RSA_2048","keyOrigin":"GOOGLE_PROVIDED","keyType":"USER_MANAGED"}
+[info] 
+[info] +  Created service account github-action-596986655 with Firebase Hosting admin permissions. 
+[debug] [2023-04-12T17:30:10.836Z] >>> [apiv2][query] PUT https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/FIREBASE_SERVICE_ACCOUNT_CONFERENCIFY_E6615 [none]
+[debug] [2023-04-12T17:30:10.836Z] >>> [apiv2][body] PUT https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/FIREBASE_SERVICE_ACCOUNT_CONFERENCIFY_E6615 {"encrypted_value":"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","key_id":"568250167242549743"}
+[debug] [2023-04-12T17:30:11.393Z] <<< [apiv2][status] PUT https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/FIREBASE_SERVICE_ACCOUNT_CONFERENCIFY_E6615 204
+[debug] [2023-04-12T17:30:11.394Z] <<< [apiv2][body] PUT https://api.github.com/repos/siddhant049/Conferencify/actions/secrets/FIREBASE_SERVICE_ACCOUNT_CONFERENCIFY_E6615 undefined
+[info] +  Uploaded service account JSON to GitHub as secret FIREBASE_SERVICE_ACCOUNT_CONFERENCIFY_E6615. 
+[info] i  You can manage your secrets at https://github.com/siddhant049/Conferencify/settings/secrets. 
+[info] 

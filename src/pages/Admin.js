@@ -139,7 +139,7 @@ const Admin = () => {
           'Author Emails': authorEmails,
           'Plagariasm %': paper.plagiarismPercentage,
           'Review Status': paper.status,
-          'Review Comment': paper.review[8].verdict,
+          'Review Comment': paper.review[8] ? paper.review[8].verdict : 'N/A',
         };
       })
     : [];
