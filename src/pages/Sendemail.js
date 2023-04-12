@@ -25,10 +25,13 @@ import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-import { MenuItem, Select, TextField } from '@mui/material';
+import { MenuItem, Select, TextField, Grid, Button } from '@mui/material';
 
 import Navbar from '../components/Navbar';
 import classesinfo from './sendemail.module.css';
+import { MessageSeverity } from '../components/CollapsibleMessage';
+import { postData } from '../axios';
+import { urlMap } from '../utils/url';
 
 function createData(paperId, paperTitle, status) {
   return {
@@ -236,6 +239,8 @@ export default function EnhancedTable({
   setIsModalOpen,
   setIsCollapsibleOpen,
   iconMap,
+  setCollapsibleProperties,
+  confId,
 }) {
   const [order, setOrder] = React.useState('asc');
   const [orderBy, setOrderBy] = React.useState('calories');
@@ -260,8 +265,6 @@ export default function EnhancedTable({
     }
     setSelected([]);
   };
-
-  console.log([...selected]);
 
   const handleClick = (event, paperId) => {
     const selectedIndex = selected.indexOf(paperId);
@@ -296,6 +299,35 @@ export default function EnhancedTable({
     setDense(event.target.checked);
   };
 
+  const handleSendEmail = async (event) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const paperIds = [...selected];
+
+    if (paperIds.length === 0) {
+      return alert('Select atleast one paper to send email');
+    }
+
+    setIsModalOpen(true);
+
+    const responseData = await postData(urlMap.sendEmails, {
+      conferenceId: confId,
+      paperIds,
+      mailSubject: data.get('mailSubject'),
+      mailBody: data.get('mailBody'),
+    });
+    setIsModalOpen(false);
+
+    setCollapsibleProperties({
+      severity:
+        responseData.success === true
+          ? MessageSeverity.success
+          : MessageSeverity.error,
+      message: responseData.message,
+    });
+    setIsCollapsibleOpen(true);
+  };
+
   const isSelected = (paperId) => selected.indexOf(paperId) !== -1;
 
   // Avoid a layout jump when reaching the last page with empty rows.
@@ -317,114 +349,136 @@ export default function EnhancedTable({
           <div className={classesinfo.tableinfo}>
             <Box sx={{ width: '90%' }}>
               <Paper sx={{ width: '100%', mb: 2, paddingBottom: '20px' }}>
-                <form>
-                  <EnhancedTableToolbar
-                    numSelected={selected.length}
-                    filterValue={filterValue}
-                    setFilterValue={setFilterValue}
-                    rows={rows}
-                    setRows={setRows}
-                    allRows={allRows}
-                  />
-                  <TableContainer>
-                    <Table
-                      sx={{ minWidth: 750 }}
-                      aria-labelledby='tableTitle'
-                      size={dense ? 'small' : 'medium'}
-                    >
-                      <EnhancedTableHead
-                        numSelected={selected.length}
-                        order={order}
-                        orderBy={orderBy}
-                        onSelectAllClick={handleSelectAllClick}
-                        onRequestSort={handleRequestSort}
-                        rowCount={rows.length}
-                      />
-                      <TableBody>
-                        {stableSort(rows, getComparator(order, orderBy))
-                          .slice(
-                            page * rowsPerPage,
-                            page * rowsPerPage + rowsPerPage
-                          )
-                          .map((row, index) => {
-                            const isItemSelected = isSelected(row.paperId);
-                            const labelId = `enhanced-table-checkbox-${index}`;
-
-                            return (
-                              <TableRow
-                                hover
-                                onClick={(event) =>
-                                  handleClick(event, row.paperId)
-                                }
-                                role='checkbox'
-                                aria-checked={isItemSelected}
-                                tabIndex={-1}
-                                key={row.paperId}
-                                selected={isItemSelected}
-                              >
-                                <TableCell padding='checkbox'>
-                                  <Checkbox
-                                    color='primary'
-                                    checked={isItemSelected}
-                                    inputProps={{
-                                      'aria-labelledby': labelId,
-                                    }}
-                                  />
-                                </TableCell>
-                                <TableCell
-                                  component='th'
-                                  id={labelId}
-                                  scope='row'
-                                  padding='none'
-                                >
-                                  {row.paperId}
-                                </TableCell>
-                                <TableCell align='right'>
-                                  {row.paperTitle}
-                                </TableCell>
-                                <TableCell align='right'>
-                                  <div style={{ display: 'inline-block' }}>
-                                    {iconMap[row.status]}
-                                  </div>
-                                </TableCell>
-                              </TableRow>
-                            );
-                          })}
-                        {emptyRows > 0 && (
-                          <TableRow
-                            style={{
-                              height: (dense ? 33 : 53) * emptyRows,
-                            }}
-                          >
-                            <TableCell colSpan={6} />
-                          </TableRow>
-                        )}
-                      </TableBody>
-                    </Table>
-                  </TableContainer>
-                  <TablePagination
-                    rowsPerPageOptions={[20, 40, 65]}
-                    component='div'
-                    count={rows.length}
-                    rowsPerPage={rowsPerPage}
-                    page={page}
-                    onPageChange={handleChangePage}
-                    onRowsPerPageChange={handleChangeRowsPerPage}
-                  />
-                  <div className={classesinfo.emailContent}>
-                    <p>Email Content here: &nbsp;</p>
-                    <TextField
-                      className={classesinfo.emailContentContainer}
-                      sx={{ backgroundColor: 'white' }}
-                      placeholder='Type here'
-                      multiline
-                      variant='outlined'
-                      rows={7}
-                      maxRows={15}
-                      required
+                <EnhancedTableToolbar
+                  numSelected={selected.length}
+                  filterValue={filterValue}
+                  setFilterValue={setFilterValue}
+                  rows={rows}
+                  setRows={setRows}
+                  allRows={allRows}
+                />
+                <TableContainer>
+                  <Table
+                    sx={{ minWidth: 750 }}
+                    aria-labelledby='tableTitle'
+                    size={dense ? 'small' : 'medium'}
+                  >
+                    <EnhancedTableHead
+                      numSelected={selected.length}
+                      order={order}
+                      orderBy={orderBy}
+                      onSelectAllClick={handleSelectAllClick}
+                      onRequestSort={handleRequestSort}
+                      rowCount={rows.length}
                     />
-                  </div>
-                </form>
+                    <TableBody>
+                      {stableSort(rows, getComparator(order, orderBy))
+                        .slice(
+                          page * rowsPerPage,
+                          page * rowsPerPage + rowsPerPage
+                        )
+                        .map((row, index) => {
+                          const isItemSelected = isSelected(row.paperId);
+                          const labelId = `enhanced-table-checkbox-${index}`;
+
+                          return (
+                            <TableRow
+                              hover
+                              onClick={(event) =>
+                                handleClick(event, row.paperId)
+                              }
+                              role='checkbox'
+                              aria-checked={isItemSelected}
+                              tabIndex={-1}
+                              key={row.paperId}
+                              selected={isItemSelected}
+                            >
+                              <TableCell padding='checkbox'>
+                                <Checkbox
+                                  color='primary'
+                                  checked={isItemSelected}
+                                  inputProps={{
+                                    'aria-labelledby': labelId,
+                                  }}
+                                />
+                              </TableCell>
+                              <TableCell
+                                component='th'
+                                id={labelId}
+                                scope='row'
+                                padding='none'
+                              >
+                                {row.paperId}
+                              </TableCell>
+                              <TableCell align='right'>
+                                {row.paperTitle}
+                              </TableCell>
+                              <TableCell align='right'>
+                                <div style={{ display: 'inline-block' }}>
+                                  {iconMap[row.status]}
+                                </div>
+                              </TableCell>
+                            </TableRow>
+                          );
+                        })}
+                      {emptyRows > 0 && (
+                        <TableRow
+                          style={{
+                            height: (dense ? 33 : 53) * emptyRows,
+                          }}
+                        >
+                          <TableCell colSpan={6} />
+                        </TableRow>
+                      )}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+                <TablePagination
+                  rowsPerPageOptions={[20, 40, 65]}
+                  component='div'
+                  count={rows.length}
+                  rowsPerPage={rowsPerPage}
+                  page={page}
+                  onPageChange={handleChangePage}
+                  onRowsPerPageChange={handleChangeRowsPerPage}
+                />
+                <Grid
+                  className={classesinfo.emailContent}
+                  component='form'
+                  onSubmit={handleSendEmail}
+                >
+                  <p>Email Content: &nbsp;</p> <br />
+                  <TextField
+                    className={classesinfo.emailContentContainer}
+                    sx={{ backgroundColor: 'white', marginBottom: '10px' }}
+                    multiline
+                    variant='outlined'
+                    maxRows={15}
+                    required
+                    name='mailSubject'
+                    placeholder='Email Subject'
+                  />{' '}
+                  <br />
+                  <TextField
+                    className={classesinfo.emailContentContainer}
+                    sx={{ backgroundColor: 'white' }}
+                    placeholder='Email Body'
+                    multiline
+                    variant='outlined'
+                    rows={7}
+                    maxRows={15}
+                    required
+                    name='mailBody'
+                  />{' '}
+                  <br />
+                  <Button
+                    type='submit'
+                    variant='contained'
+                    sx={{ mt: 3, mb: 2, ml: 3, backgroundColor: '#243f5f' }}
+                  >
+                    Send Email
+                  </Button>
+                </Grid>
               </Paper>
               <FormControlLabel
                 control={

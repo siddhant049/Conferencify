@@ -474,6 +474,8 @@ const Admin = () => {
                   setIsModalOpen={setIsModalOpen}
                   setIsCollapsibleOpen={setIsCollapsibleOpen}
                   iconMap={iconMap}
+                  setCollapsibleProperties={setCollapsibleProperties}
+                  confId={confId}
                 />
               </TabPanel>
             </Box>
