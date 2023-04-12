@@ -17,7 +17,7 @@ import CollapsibleMessage, {
   MessageSeverity,
 } from '../components/CollapsibleMessage';
 import LoadingModal from '../components/LoadingModal';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 
 // import {Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
@@ -44,6 +44,7 @@ const theme = createTheme();
 
 export default function Login() {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const [isModalOpen, setIsModalOpen] = React.useState(false);
   const [isCollapsibleOpen, setIsCollapsibleOpen] = React.useState(false);
   const [collapsibleProperties, setCollapsibleProperties] = React.useState({
@@ -76,6 +77,30 @@ export default function Login() {
     });
     setIsCollapsibleOpen(true);
   };
+
+  React.useEffect(() => {
+    const verify = searchParams.get('verify');
+    if (verify === null) return;
+
+    console.log(verify);
+    if (verify === '0') {
+      setCollapsibleProperties({
+        severity: MessageSeverity.error,
+        message: 'Email Verification failed',
+      });
+    } else if (verify === '1') {
+      setCollapsibleProperties({
+        severity: MessageSeverity.success,
+        message: 'Email Verified Successfully',
+      });
+    } else if (verify === '2') {
+      setCollapsibleProperties({
+        severity: MessageSeverity.info,
+        message: 'Email already verified',
+      });
+    }
+    setIsCollapsibleOpen(true);
+  }, []);
 
   return (
     <motion.div
