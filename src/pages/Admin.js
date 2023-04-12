@@ -126,13 +126,20 @@ const Admin = () => {
 
   const ExcelExportData = papers
     ? papers.map((paper) => {
+        const authors = paper.authors.map((author) => author.name).join(', ');
+        const authorEmails = paper.authors
+          .map((author) => author.email)
+          .join(', ');
         return {
           'Paper ID': paper.paperId,
           Title: paper.title,
           Keywords: paper.keywords,
           Abstract: paper.abstract,
+          Authors: authors,
+          'Author Emails': authorEmails,
           'Plagariasm %': paper.plagiarismPercentage,
           'Review Status': paper.status,
+          'Review Comment': paper.review[8].verdict,
         };
       })
     : [];
