@@ -298,11 +298,11 @@ function Publisher() {
               </Grid>
               <Grid item xs={12} style={{ paddingTop: '20px' }}>
                 <Typography>
-                  <em>Plagariasm Check</em>
+                  <em>Plagiarism Check</em>
                 </Typography>
                 <Typography variant='caption' sx={{ marginBottom: '5px' }}>
-                  Note: This Plagariasm check is for user convenience and checks
-                  only first 10,000 characters. Final Plagariasm check would be
+                  Note: This Plagiarism check is for user convenience and checks
+                  only first 10,000 characters. Final Plagiarism check would be
                   done later using Turnitin.
                 </Typography>{' '}
                 <br />
