@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import './Admin.css';
+import PdfGenerater from './Pdfgenerate'
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -36,6 +37,9 @@ import ContentCopyTwoToneIcon from '@mui/icons-material/ContentCopyTwoTone';
 import { isLoggedIn } from '../utils/auth';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
+
+import ReviewerInfo from './ReviewerInfo'
+import CFPUpdate from './CFPUpdate'
 const iconMap = {
   Unassigned: (
     <Tooltip title='No reviewer assigned'>
@@ -274,8 +278,11 @@ const Admin = () => {
                     <ContentCopyTwoToneIcon className='urlLogo' />
                   )}
                 </Tooltip>
+               
               </div>
+             
             </div>
+            <div></div>
             <CollapsibleMessage
               open={isCollapsibleOpen}
               setOpen={setIsCollapsibleOpen}
@@ -297,6 +304,9 @@ const Admin = () => {
                   <Tab label='All Papers' {...a11yProps(0)} />
                   <Tab label='Add Reviewer' {...a11yProps(1)} />
                   <Tab label='Send Email' {...a11yProps(2)} />
+                  <Tab label='Conference Configuration' {...a11yProps(3)} />
+                  <Tab label='Reviewer Details' {...a11yProps(4)} />
+                  <Tab label='Generate Certificate ' {...a11yProps(5)} />
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
@@ -484,6 +494,18 @@ const Admin = () => {
                   setCollapsibleProperties={setCollapsibleProperties}
                   confId={confId}
                 />
+              </TabPanel>
+              <TabPanel value={value} index={3} style={{display:'flex',justifyContent:'center'}}>
+                        <div><CFPUpdate/></div>  
+              </TabPanel>
+              <TabPanel value={value} index={4} style={{display:'flex',justifyContent:'center'}}> 
+
+                        <ReviewerInfo/> 
+              </TabPanel>
+              
+              <TabPanel value={value} index={5} style={{display:'flex',justifyContent:'center'}}> 
+
+                        <PdfGenerater/>
               </TabPanel>
             </Box>
           </div>
