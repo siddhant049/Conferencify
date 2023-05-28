@@ -16,4 +16,7 @@ export const urlMap = {
   getReviewPapers: `${conferenceUrl}/review/paper`,
   submitReview: `${conferenceUrl}/paper/review/submit`,
   submitPlag: `${conferenceUrl}/plag/submit`,
+  changeConferenceStatus: `${conferenceUrl}/status/change`,
+  changeConferenceConfiguration: `${conferenceUrl}/configuration/change`,
+  getReviewersSummary: `${conferenceUrl}/reviewer/summary`,
 };

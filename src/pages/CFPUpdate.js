@@ -27,7 +27,7 @@ import { isLoggedIn } from '../utils/auth';
 // const handleChange = (newValue) => {
 //   setValue(newValue);
 // };
-const CFP = () => {
+const CFP = ({ confId, conference, setConferenceData }) => {
   const navigate = useNavigate();
 
   const [isModalOpen, setIsModalOpen] = React.useState(false);
@@ -36,6 +36,9 @@ const CFP = () => {
     severity: MessageSeverity.info,
     message: '',
   });
+  const [isConfOpen, setIsConfOpen] = React.useState(
+    conference.isConferenceOpen
+  );
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -53,12 +56,14 @@ const CFP = () => {
       secondaryArea: data.get('secondaryArea'),
       topics: [data.get('t1'), data.get('t2'), data.get('t3'), data.get('t4')],
     };
-    const response = await postData(urlMap.createConference, confData);
+    console.log(confData);
+    const response = await postData(urlMap.changeConferenceConfiguration, {
+      conferenceId: confId,
+      confData,
+    });
+    setConferenceData(response.conference);
     setIsModalOpen(false);
 
-    if (response.success === true) {
-      navigate(`/admin/${response.conference._id}`);
-    }
     setCollapsibleProperties({
       severity:
         response.success === true
@@ -67,6 +72,13 @@ const CFP = () => {
       message: response.message,
     });
     setIsCollapsibleOpen(true);
+  };
+
+  const handleConferenceStatusChange = async () => {
+    setIsConfOpen((prev) => !prev);
+    const response = await postData(urlMap.changeConferenceStatus, {
+      conferenceId: confId,
+    });
   };
 
   useEffect(() => {
@@ -84,7 +96,7 @@ const CFP = () => {
       exit={{ opacity: 0 }}
       transition={{ duration: 1 }}
     >
-      <div className={classes['form-outer']} style={{marginTop:'0vh'}}>
+      <div className={classes['form-outer']} style={{ marginTop: '0vh' }}>
         <div className={classes.bigContainer}>
           <div className={classes.container}>
             <div>
@@ -94,19 +106,22 @@ const CFP = () => {
                 }}
               >
                 <CardContent>
-                  <Typography gutterBottom variant='h5' sx={{display:'flex',justifyContent:'center'}}>
+                  <Typography
+                    gutterBottom
+                    variant='h5'
+                    sx={{ display: 'flex', justifyContent: 'center' }}
+                  >
                     Edit Your Configuration
                     <Grid item xs={12} style={{ paddingLeft: '40vw' }}>
                       <Button
-                        
                         variant='contained'
                         color='primary'
-                        
-                        sx={{ backgroundColor: '#243f5f' ,minWidth:'15vw'}}
+                        sx={{ backgroundColor: '#243f5f', minWidth: '15vw' }}
+                        onClick={handleConferenceStatusChange}
                       >
-                        Close Conference
+                        {isConfOpen ? 'Close Conference' : 'Open Conference'}
                       </Button>
-                      </Grid>
+                    </Grid>
                   </Typography>
                   <CollapsibleMessage
                     open={isCollapsibleOpen}
@@ -162,6 +177,7 @@ const CFP = () => {
                         placeholder='Conference Name'
                         variant='outlined'
                         name='name'
+                        defaultValue={conference.name}
                         fullWidth
                         required
                       />
@@ -176,6 +192,7 @@ const CFP = () => {
                         placeholder='Acronym'
                         variant='outlined'
                         name='acronym'
+                        defaultValue={conference.acronym}
                         fullWidth
                         required
                       />
@@ -196,6 +213,7 @@ const CFP = () => {
                         placeholder='Web Page'
                         variant='outlined'
                         name='webpage'
+                        defaultValue={conference.webpage}
                         fullWidth
                         required
                       />
@@ -211,12 +229,14 @@ const CFP = () => {
                         variant='outlined'
                         style={{ paddingRight: '10px' }}
                         name='venue'
+                        defaultValue={conference.venue}
                       />
                       <TextField
                         type='text'
                         placeholder='City'
                         variant='outlined'
                         name='city'
+                        defaultValue={conference.city}
                       />
                     </Grid>
 
@@ -231,6 +251,7 @@ const CFP = () => {
                         id='demo-simple-select'
                         style={{ minWidth: 250 }}
                         name='country'
+                        defaultValue={conference.country}
                       >
                         {/* <MenuItem value={10}>Ten</MenuItem>
                         <MenuItem value={20}>Twenty</MenuItem>
@@ -279,6 +300,7 @@ const CFP = () => {
                           id='demo-simple-select'
                           style={{ minWidth: 250 }}
                           name='primaryArea'
+                          defaultValue={conference.primaryArea}
                         >
                           {/* <MenuItem value={10}>Ten</MenuItem>
                           <MenuItem value={20}>Twenty</MenuItem>
@@ -300,6 +322,7 @@ const CFP = () => {
                           id='demo-simple-select'
                           style={{ minWidth: 250 }}
                           name='secondaryArea'
+                          defaultValue={conference.secondaryArea}
                         >
                           {/* <MenuItem value={10}>Ten</MenuItem>
                           <MenuItem value={20}>Twenty</MenuItem>
@@ -331,6 +354,7 @@ const CFP = () => {
                         required
                         style={{ paddingTop: '7px' }}
                         name='t1'
+                        defaultValue={conference.topics[0]}
                       />
                       <TextField
                         type='text'
@@ -340,6 +364,7 @@ const CFP = () => {
                         required
                         style={{ paddingTop: '7px' }}
                         name='t2'
+                        defaultValue={conference.topics[1]}
                       />
                       <TextField
                         type='text'
@@ -349,6 +374,7 @@ const CFP = () => {
                         required
                         style={{ paddingTop: '7px' }}
                         name='t3'
+                        defaultValue={conference.topics[2]}
                       />
                       <TextField
                         type='text'
@@ -358,9 +384,9 @@ const CFP = () => {
                         required
                         style={{ paddingTop: '7px' }}
                         name='t4'
+                        defaultValue={conference.topics[3]}
                       />
                     </Grid>
-                    
 
                     <Grid item xs={12} style={{ paddingTop: '20px' }}>
                       <Button

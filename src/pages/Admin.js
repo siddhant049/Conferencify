@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import './Admin.css';
-import PdfGenerater from './Pdfgenerate'
+import PdfGenerater from './Pdfgenerate';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -39,9 +39,8 @@ import ContentCopyTwoToneIcon from '@mui/icons-material/ContentCopyTwoTone';
 import { isLoggedIn } from '../utils/auth';
 import PersonAddAltIcon from '@mui/icons-material/PersonAddAlt';
 
-
-import ReviewerInfo from './ReviewerInfo'
-import CFPUpdate from './CFPUpdate'
+import ReviewerInfo from './ReviewerInfo';
+import CFPUpdate from './CFPUpdate';
 const iconMap = {
   Unassigned: (
     <Tooltip title='No reviewer assigned'>
@@ -315,9 +314,7 @@ const Admin = () => {
                     <ContentCopyTwoToneIcon className='urlLogo' />
                   )}
                 </Tooltip>
-               
               </div>
-             
             </div>
             <div></div>
             <CollapsibleMessage
@@ -343,7 +340,7 @@ const Admin = () => {
                   <Tab label='Send Email' {...a11yProps(2)} />
                   <Tab label='Conference Configuration' {...a11yProps(3)} />
                   <Tab label='Reviewer Details' {...a11yProps(4)} />
-                  <Tab label='Generate Certificate ' {...a11yProps(5)} />
+                  <Tab label='Virtual Conference ' {...a11yProps(5)} />
                 </Tabs>
               </Box>
               <TabPanel value={value} index={0}>
@@ -596,17 +593,41 @@ const Admin = () => {
                   confId={confId}
                 />
               </TabPanel>
-              <TabPanel value={value} index={3} style={{display:'flex',justifyContent:'center'}}>
-                        <div><CFPUpdate/></div>  
+              <TabPanel
+                value={value}
+                index={3}
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <div>
+                  <CFPUpdate
+                    setIsModalOpen={setIsModalOpen}
+                    setIsCollapsibleOpen={setIsCollapsibleOpen}
+                    setCollapsibleProperties={setCollapsibleProperties}
+                    confId={confId}
+                    conference={conferenceData}
+                    setConferenceData={setConferenceData}
+                  />
+                </div>
               </TabPanel>
-              <TabPanel value={value} index={4} style={{display:'flex',justifyContent:'center'}}> 
-
-                        <ReviewerInfo/> 
+              <TabPanel
+                value={value}
+                index={4}
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <ReviewerInfo
+                  setIsModalOpen={setIsModalOpen}
+                  setCollapsibleProperties={setCollapsibleProperties}
+                  setIsCollapsibleOpen={setIsCollapsibleOpen}
+                  confId={confId}
+                />
               </TabPanel>
-              
-              <TabPanel value={value} index={5} style={{display:'flex',justifyContent:'center'}}> 
 
-                        <PdfGenerater/>
+              <TabPanel
+                value={value}
+                index={5}
+                style={{ display: 'flex', justifyContent: 'center' }}
+              >
+                <PdfGenerater />
               </TabPanel>
             </Box>
           </div>

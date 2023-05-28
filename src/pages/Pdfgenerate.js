@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+// import * as fs from 'fs/promises';
+// const fs = require('fs/promises');
 
 const PDFWriter = () => {
   const [inputText, setInputText] = useState('');
@@ -12,12 +14,14 @@ const PDFWriter = () => {
   const generatePDF = async () => {
     console.log('1');
     // Load the existing PDF template
-    const existingPdfBytes = await fetch('../img/template.pdf').then((res) => res.arrayBuffer());
+    const existingPdfBytes = await fetch('../img/template.pdf').then((res) =>
+      res.arrayBuffer()
+    );
     console.log('2');
-    // var bytes = new Uint8Array(existingPdfBytes);  
-    // console.log('5'); 
+    var bytes = new Uint8Array(existingPdfBytes);
+    console.log('5');
     // Create a new PDF document
-    const pdfDoc = await PDFDocument.load(existingPdfBytes);
+    const pdfDoc = await PDFDocument.load(bytes);
     console.log('3');
 
     // Add a new page to the PDF
@@ -49,7 +53,9 @@ const PDFWriter = () => {
 
   const downloadPDF = () => {
     if (pdfBytes) {
-      const pdfDataUri = URL.createObjectURL(new Blob([pdfBytes], { type: 'application/pdf' }));
+      const pdfDataUri = URL.createObjectURL(
+        new Blob([pdfBytes], { type: 'application/pdf' })
+      );
       const downloadLink = document.createElement('a');
       downloadLink.href = pdfDataUri;
       downloadLink.download = 'generated_pdf.pdf';
@@ -60,7 +66,12 @@ const PDFWriter = () => {
   return (
     <div>
       <h1>PDF Writer</h1>
-      <input type="text" value={inputText} onChange={handleInputChange} placeholder="Enter text" />
+      <input
+        type='text'
+        value={inputText}
+        onChange={handleInputChange}
+        placeholder='Enter text'
+      />
       <button onClick={generatePDF}>Generate PDF</button>
       <button onClick={downloadPDF} disabled={!pdfBytes}>
         Download PDF
