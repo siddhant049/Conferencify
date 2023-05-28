@@ -15,6 +15,7 @@ import { AnimatePresence } from 'framer-motion';
 import Error from './components/Error';
 import Navbar from './components/Navbar';
 
+
 function App() {
   return (
     <>
@@ -29,7 +30,7 @@ function App() {
           <Route exact path='/reviewer/:confId' element={<Reviewer />} />
           <Route exact path='/conferences' element={<Conferences />} />
           <Route exact path='/allconferences' element={<Allconferences />} />
-
+          
           <Route exact path='/#about' element={<Home />} />
 
           <Route exact path='/login' element={<Login />} />

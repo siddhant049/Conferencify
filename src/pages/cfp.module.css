@@ -1,8 +1,10 @@
 .form-outer {
     margin-top: 13vh;
     display: flex;
-    width: 100vw;
     justify-content: center;
+    transform: translate(-5%,0%);
+    width: 100vw;
+
     margin-bottom: 10vh;
 }
 
