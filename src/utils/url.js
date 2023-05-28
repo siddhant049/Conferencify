@@ -15,4 +15,5 @@ export const urlMap = {
   sendEmails: `${conferenceUrl}/email/send`,
   getReviewPapers: `${conferenceUrl}/review/paper`,
   submitReview: `${conferenceUrl}/paper/review/submit`,
+  submitPlag: `${conferenceUrl}/plag/submit`,
 };

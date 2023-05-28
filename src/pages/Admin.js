@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
+import Paper from '@mui/material/Paper';
+import { styled } from '@mui/material/styles';
 import './Admin.css';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import { FormControl, MenuItem, Select, Tooltip } from '@mui/material';
+import { FormControl, Input, MenuItem, Select, Tooltip } from '@mui/material';
 
 import { Grid, TextField, Card, CardContent } from '@mui/material';
 import Button from '@mui/material/Button';
@@ -106,6 +108,14 @@ function a11yProps(index) {
   };
 }
 
+const Item = styled(Paper)(({ theme }) => ({
+  backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
+  ...theme.typography.body2,
+  padding: theme.spacing(1),
+  textAlign: 'center',
+  color: theme.palette.text.secondary,
+}));
+
 const Admin = () => {
   const navigate = useNavigate();
 
@@ -127,6 +137,9 @@ const Admin = () => {
   const ExcelExportData = papers
     ? papers.map((paper) => {
         const authors = paper.authors.map((author) => author.name).join(', ');
+        const affiliations = paper.authors
+          .map((author) => author.affiliation)
+          .join(', ');
         const authorEmails = paper.authors
           .map((author) => author.email)
           .join(', ');
@@ -137,6 +150,7 @@ const Admin = () => {
           Abstract: paper.abstract,
           Authors: authors,
           'Author Emails': authorEmails,
+          Affiliation: affiliations,
           'Plagariasm %': paper.plagiarismPercentage,
           'Review Status': paper.status,
           'Review Comment': paper.review[8] ? paper.review[8].verdict : 'N/A',
@@ -205,6 +219,29 @@ const Admin = () => {
     const responseData = await postData(urlMap.assignReviewer, {
       conferenceId: confId,
       reviewerId: data.get('assignedReviewer'),
+      paperId: paperId,
+    });
+    setIsModalOpen(false);
+
+    setCollapsibleProperties({
+      severity:
+        responseData.success === true
+          ? MessageSeverity.success
+          : MessageSeverity.error,
+      message: responseData.message,
+    });
+    setIsCollapsibleOpen(true);
+  };
+
+  const handleSumbitPlagariamPercentage = async (event, paperId) => {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+
+    setIsModalOpen(true);
+
+    const responseData = await postData(urlMap.submitPlag, {
+      conferenceId: confId,
+      plagPercentage: data.get('plagPercentage'),
       paperId: paperId,
     });
     setIsModalOpen(false);
@@ -331,6 +368,7 @@ const Admin = () => {
                         </AccordionSummary>
                         <AccordionDetails>
                           <Typography
+                            sx={{ marginBottom: '20px' }}
                             component='form'
                             onSubmit={(event) => {
                               handlerAssignReviewer(event, paper._id);
@@ -343,6 +381,25 @@ const Admin = () => {
                             <br />
                             <h5>Keywords:</h5> {paper.keywords} <br></br>
                             <br></br>
+                            <a
+                              href={paper.url}
+                              target='_blank'
+                              rel='noreferrer'
+                              style={{ textDecoration: 'none' }}
+                            >
+                              <Button
+                                variant='contained'
+                                style={{
+                                  // marginLeft: '100px',
+                                  // marginTop: '10px',
+                                  marginBottom: '40px',
+                                  backgroundColor: '#243f5f',
+                                }}
+                              >
+                                Download Paper{' '}
+                              </Button>
+                            </a>{' '}
+                            <br />
                             <FormControl>
                               <InputLabel
                                 id='demo-simple-select-label'
@@ -370,38 +427,82 @@ const Admin = () => {
                               </Select>
                             </FormControl>
                             <FormControl>
-                              <a
-                                href={paper.url}
-                                target='_blank'
-                                rel='noreferrer'
-                                style={{ textDecoration: 'none' }}
-                              >
-                                <Button
-                                  variant='contained'
-                                  style={{
-                                    marginLeft: '100px',
-                                    marginTop: '10px',
-                                    backgroundColor: '#243f5f',
-                                  }}
-                                >
-                                  Download Paper{' '}
-                                </Button>
-                              </a>
                               {/* <button type="button">Click Me!</button> */}
                             </FormControl>
-                            <br />
+                            {/* <br /> */}
                             <Button
                               variant='contained'
                               style={{
                                 marginLeft: '30px',
-                                marginTop: '20px',
+                                marginTop: '10px',
                                 backgroundColor: '#243f5f',
                               }}
                               type='submit'
                             >
-                              Save{' '}
+                              Assign{' '}
                             </Button>
                           </Typography>
+                          <Typography
+                            component='form'
+                            onSubmit={(event) => {
+                              handleSumbitPlagariamPercentage(event, paper._id);
+                            }}
+                            sx={{ marginBottom: '20px' }}
+                          >
+                            <FormControl>
+                              <TextField
+                                sx={{ marginLeft: '10px' }}
+                                margin='normal'
+                                required
+                                fullWidth
+                                name='plagPercentage'
+                                label='Plagariam Percentage'
+                                type='number'
+                                id='plagPercentage'
+                              />
+                            </FormControl>
+                            <Button
+                              variant='contained'
+                              style={{
+                                marginLeft: '30px',
+                                marginTop: '25px',
+                                backgroundColor: '#243f5f',
+                              }}
+                              type='submit'
+                            >
+                              Submit{' '}
+                            </Button>
+                          </Typography>
+                          {(paper.status === 'Approved' ||
+                            paper.status === 'Rejected') && (
+                            <Typography>
+                              <hr />
+                              <Typography
+                                variant='h4'
+                                sx={{ marginTop: '20px' }}
+                              >
+                                Review
+                              </Typography>
+                              <Grid container spacing={2}>
+                                <Grid item xs={4}>
+                                  <Item>
+                                    <b>Verdict</b>
+                                  </Item>
+                                </Grid>
+                                <Grid item xs={8}>
+                                  <Item>
+                                    <b>Comment</b>
+                                  </Item>
+                                </Grid>
+                                <Grid item xs={4}>
+                                  <Item>{paper.status}</Item>
+                                </Grid>
+                                <Grid item xs={8}>
+                                  <Item>{paper.review[8].verdict}</Item>
+                                </Grid>
+                              </Grid>
+                            </Typography>
+                          )}
                         </AccordionDetails>
                       </Accordion>
                     );

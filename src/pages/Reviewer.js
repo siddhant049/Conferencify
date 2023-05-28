@@ -138,7 +138,6 @@ const Admin = () => {
       valueaddition: data.get('valueaddition'),
       quality: data.get('quality'),
       comments: data.get('comments'),
-      plagiarism: data.get('plag'),
     });
 
     const reviewData = {
@@ -154,9 +153,7 @@ const Admin = () => {
         { question: 'valueaddition', verdict: data.get('valueaddition') },
         { question: 'quality', verdict: data.get('quality') },
         { question: 'comments', verdict: data.get('comments') },
-        { question: 'plagiarism', verdict: data.get('plag') },
       ],
-      plagiarismPercentage: data.get('plag'),
     };
 
     const responseData = await postData(urlMap.submitReview, reviewData);
@@ -625,25 +622,6 @@ const Admin = () => {
                                       </Box>
                                     )}
                                   </Box>
-                                </Grid>
-
-                                <Grid
-                                  item
-                                  xs={12}
-                                  style={{ paddingTop: '20px' }}
-                                >
-                                  <InputLabel id='demo-simple-select-label'>
-                                    <i>Plagiarism Percentage *</i>
-                                  </InputLabel>
-                                  <TextField
-                                    variant='outlined'
-                                    name='plag'
-                                    maxRows={10}
-                                    placeholder='Plagiarism Percentage'
-                                    fullWidth
-                                    required
-                                    type='number'
-                                  ></TextField>
                                 </Grid>
 
                                 <Grid
