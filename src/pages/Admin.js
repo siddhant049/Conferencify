@@ -3,7 +3,7 @@ import Navbar from '../components/Navbar';
 import Paper from '@mui/material/Paper';
 import { styled } from '@mui/material/styles';
 import './Admin.css';
-import PdfGenerater from './Pdfgenerate';
+import LinkGenerate from './LinkGenerate';
 import PropTypes from 'prop-types';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
@@ -627,7 +627,7 @@ const Admin = () => {
                 index={5}
                 style={{ display: 'flex', justifyContent: 'center' }}
               >
-                <PdfGenerater />
+                <LinkGenerate />
               </TabPanel>
             </Box>
           </div>
